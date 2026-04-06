@@ -1,0 +1,270 @@
+:root{
+  --theam: rgb(48, 34, 25);
+  --hcolor:rgb(59, 58, 56);
+  --orange:rgb(164, 91, 41);
+  --lighttheam:#624430;
+  --colorgray:rgb(226, 222, 220);
+   --heading-font: "Quintessential", serif;
+}
+.nav-row{
+    background-color: var(--theam);
+    font-size: 1.1rem;
+    position: sticky;
+    top: 0px;
+    right: 0px;
+    box-shadow: 2px 2px 10px var(--theam);
+    font-family:sans-serif;
+    z-index: 999;
+}
+.nav-row a{
+    color: white;
+}
+.nav-row a:hover{
+    color: var(--orange);
+}
+.l1{
+    height: 100px;
+    width: 150px;
+}
+.t1{
+    height: 100px;
+  
+}
+.nav-row button{
+    background-color: var(--orange);
+    color: white;
+}
+.nav-row button:hover{
+    background-color:white;
+    color:  var(--orange);
+}
+.banner{
+    background-image: url(../src/assets/banner.png);
+    background-size: cover;
+    height: 90vh ;
+}
+.heading{
+  /* text-transform: uppercase; */
+  font-family: var(--heading-font);
+}
+.heading>span{
+ color: var(--orange);
+}
+.line1{
+    height: 2px;
+    width: 120px;
+    background-color:var(--orange);
+    margin: 0px 5px;
+
+}
+.line2{
+    height: 2px;
+    width: 10px;
+    background-color: black;
+    
+}
+.service-card i{
+    color: var(--lighttheam);
+    font-size: 2.5rem;
+}
+.service-card{
+    border-top: 2px solid gray;
+    border-right: 2px solid gray;
+    transition: all 0.4s linear;
+    border-bottom: 2px solid transparent;
+    border-left: 2px solid transparent;
+    position: relative;
+
+}
+.service-card:hover{
+border-bottom: 2px solid var(--orange);
+    border-left: 2px solid var(--orange);
+    box-shadow: 3px 3px 20px var(--orange); 
+}
+.service-card .l{
+    height: 2px;
+    margin:auto;
+    width: 30%;
+    background-color: var(--lighttheam);
+    transition: all 0.4s ease;
+
+}
+.service-card:hover .l{
+    width: 50%;
+}
+.service-card button{
+    position: absolute;
+    bottom: -40px;
+   background-color:var(--orange);
+    transform: translate(-50%,-50%);
+    color: white;
+    border-radius: 0px;
+    
+}
+.service-card button:hover{
+   background-color:var(--orange);
+    color: white;
+
+}
+.our-number img{
+  height: 50px;
+}
+.our-num-row{
+    background-color:var(--colorgray);
+}
+.ournum-row img{
+    height: 80px;
+}
+.ournum-row .card{
+    background-color: var(--colorgray);
+}
+.process-row img{
+   height: 50px;
+
+}
+.process-row .card{
+   transition: all 0.3s ease;
+   min-height: 270px;
+   
+
+}
+.process-row .card:hover {
+  box-shadow: 2px 2px 20px var(--theam);
+  transform: scaleY(1.05);
+}
+.process-row .card h3{
+  color: var(--lighttheam);
+}
+.card-left{
+    background-image: url(../src/assets/client.webp);
+   
+    background-size: cover;
+}
+.card-right button{
+    background-color:var(--orange);
+    color: white;
+}
+.card-right button:hover{
+     background-color: white;
+    color:var(--orange) ;
+}
+.testimonial-row .card{
+    height: 500px;
+    object-fit: cover;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.testimonial-row .card img{
+    height: 500px;
+     transition: all 0.3s ease;
+
+}
+.testimonial-row .card:hover img{
+    
+   transform: scale(1.05);
+
+}
+.review-text{
+    position: absolute;
+    top: 42%;
+    left: 0%;
+    width: 100%;
+   background: linear-gradient(to bottom, rgba(0, 0, 0,0),rgba(0, 0, 0,1));
+    color: white;
+}
+.review-text span{
+    display: inline-block;
+     background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+   
+}
+.review-text i{
+    color: var(--orange);
+}
+.monitor-row button{
+    background-color: var(--orange);
+    border-radius: 0px;
+    color: white;
+}
+.monitor-row button:hover{
+    background-color: var(--orange);
+    border-radius: 0px;
+    color: white;
+}
+@media (max-width:1526px){
+    .monitor-row p{
+        display: none;
+    }
+}
+.footer-row {
+    background-color: var(--theam);
+    color: white;
+
+}
+.footer-row ul{
+    list-style: none;
+}
+.footer-row ul>li{
+    margin-left: -30px;
+    padding: 5px 0px;
+}
+.footer-row ul>li>a{
+    text-decoration: none;
+    color: rgb(93, 106, 115);
+}
+.footer-row ul>li>a:hover{
+   color: var(--orange);
+}
+.social-media span{
+  display: inline-block;
+  padding: 7px 10px;
+  font-size: 1.3rem;
+  border-radius: 50%;
+  border: 1px solid var(--orange);
+  color: var(--orange);
+  margin: 0px 5px;
+}
+.social-media span:hover{
+ 
+  
+  border: 1px solid white;
+  color: white;
+  background-color: var(--orange);
+
+}
+.enq-btn{
+    position: fixed;
+    top: 50%;
+    right: -10px;
+    rotate: 90deg;
+    background-color: var(--orange);
+    color: white;
+    box-shadow: 1px 1px 10px var(--orange);
+    animation: blink 2s ease infinite;
+}
+.enq-btn:hover{
+    background-color: var(--orange);
+    color: white;
+   
+}
+@keyframes blink {
+    0%{
+       
+           box-shadow: 2px 2px 10px yellow;
+           
+    
+    }
+     50%{
+            box-shadow: 2px 2px 10px red;
+            
+        
+    }
+    100%{
+        
+            box-shadow: 2px 2px 10px green;
+          
+       
+    }
+    
+}
