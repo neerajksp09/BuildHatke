@@ -268,3 +268,12 @@ border-bottom: 2px solid var(--orange);
     }
     
 }
+
+
+
+/* abhishek css or dropdown css */
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+  /* margin-right:10 px; */
+}

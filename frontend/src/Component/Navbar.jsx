@@ -1,6 +1,7 @@
 import React from 'react'
 import l1 from '../assets/logo3.png'
 import t1 from "../assets/t1.png"
+import { Link } from 'react-router-dom'
 
 function Navbar() {
   return (
@@ -10,7 +11,7 @@ function Navbar() {
 
   
         <div className="row nav-row">
-          <div className="col-md-9 mx-auto ">
+          <div className="col-md-12 mx-auto ">
             <nav class="navbar navbar-expand-lg ">
               <div class="container-fluid">
                  <img src={l1} alt="" className='l1'/>
@@ -38,9 +39,22 @@ function Navbar() {
 
                   </ul>
                   <div class="d-flex" role="search">
-                   
-                      <button class="btn px-4 py-2" type="submit">Register  <i class="fa-solid fa-arrow-right"></i></button>
+                  
+                      {/* <button class="btn ></button> */}
+                 <div class="dropdown "> 
+  <button class="btn btn-secondary  px-2 py-2  "  type="submit">
+Login <i class="fa-solid fa-arrow-right"></i>
+  </button>
+  <ul class="dropdown-menu  rounded-0 bg-dark boder-none"style={{right: "0"}}>
+    
+    <li><Link to="Login" className='btn btn-dark p-2 rounded-0 dropdown-item' href="#">Login</Link></li>
+    <li><Link to="conreg" class="btn btn-dark p-2 rounded-0  dropdown-item" href="#">Become a Contractor</Link></li>
+   
+    <li><a class="btn btn-dark p-2 rounded-0  dropdown-item" href="#">Site Manager</a></li>
+  </ul>
+</div>
                   </div>
+
 
 
                 </div>
@@ -51,8 +65,8 @@ function Navbar() {
 
 
       <div className="row">
-        <div className="col-sm-12  banner" >
-
+        <div className="col-sm-12 p-0" >
+          <img src="/src/assets/banner.png" alt="" className='img-fluid'/>
         </div>
       </div>
 
