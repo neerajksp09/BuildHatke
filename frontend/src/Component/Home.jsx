@@ -24,12 +24,16 @@ import cos3 from "../assets/cos3.png"
 import TestimonialCard from './TestimonialCard'
 
 import monitor from '../assets/monitor.png'
-
+import Navbar from './Navbar'
+import Footer from './Footer'
+// import Navbar from './Component/Navbar'
+// import Footer from './Component/Footer'
 
 
 function Home() {
     return (
         <>
+ <Navbar/>
 
             {/* service section */}
             <div className="row">
@@ -315,6 +319,7 @@ function Home() {
 
             <button className='btn enq-btn px-4 py-2'>Enquiry</button>
 
+   <Footer/>
 
         </>
     )
