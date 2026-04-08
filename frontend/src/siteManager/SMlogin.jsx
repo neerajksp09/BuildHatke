@@ -52,7 +52,7 @@ async function logcode(e) {
             if(res.data.user){
                 localStorage.setItem("siteManagerId",res.data.user._id)
             }
-            navigate("/sitemanagerdash")
+            navigate("/sitemanager")
         }
         if(res.data.msg=="user not found"){
             window.alert("user not Found")
