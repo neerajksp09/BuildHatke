@@ -7,9 +7,6 @@ function Navbar(p) {
   return (
     <>
 
-
-
-
       <div className="row nav-row">
         <div className="col-md-12 mx-auto ">
           <nav class="navbar navbar-expand-lg ">
@@ -38,16 +35,18 @@ function Navbar(p) {
                   </li>
 
                 </ul>
-                <div class="d-flex">
-
-                  {/* <button class="btn ></button> */}
-                 {
-                  p.button
-                 }
+                <div className="d-flex">
+                  {p.button}
                 </div>
 
 
-    
+                  </div>
+
+            </div>
+          </nav>
+        </div>
+      </div>
+
 
 
 

@@ -51,12 +51,12 @@ function App() {
             </Route>
             <Route path="/sitemanagerlogin/" element={<SiteManagerLayout />} >
               <Route path='' element={<SMlogin />} />
-              
+
             </Route>
             <Route path="/sitemanager/" element={<SMlayout />} >
-               <Route path='dash' element={<SiteManagerDash/>}/>
-               <Route path='project' element={<SMproject/>}/>
-              
+              <Route path='dash' element={<SiteManagerDash />} />
+              <Route path='project' element={<SMproject />} />
+
             </Route>
            
          </Route>
@@ -65,8 +65,9 @@ function App() {
    <Route path='cproject'  element={<CreateProject/>} />
    <Route path='myproject'  element={<Myproject/>} />
 
-</Route>
+
           </Routes>
+
         </BrowserRouter>
 
 

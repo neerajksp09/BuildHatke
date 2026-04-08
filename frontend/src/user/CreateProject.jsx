@@ -146,9 +146,9 @@ const res = await axios.post("http://localhost:3000/api/user/project",project)
 
 // }
 
-useEffect(()=>{
-getproject();
-},[])
+// useEffect(()=>{
+// getproject();
+// },[])
   return (
   <>
   {/* <h4>Create Project</h4> */}
