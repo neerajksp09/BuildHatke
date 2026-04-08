@@ -9,6 +9,14 @@ siteManagerRouter.get('/',async(req,res)=>{
     "user":user
    })
 })
+siteManagerRouter.get('/:id',async(req,res)=>{
+   const id = req.params.id
+   const user = await siteManagerModel.findById(id)
+   return res.json({
+    msg:"success",
+    "user":user
+   })
+})
 siteManagerRouter.post('/',async(req,res)=>{
    const user = await siteManagerModel.create(req.body)
    return res.json({
