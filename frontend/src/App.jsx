@@ -51,22 +51,23 @@ function App() {
             </Route>
             <Route path="/sitemanagerlogin/" element={<SiteManagerLayout />} >
               <Route path='' element={<SMlogin />} />
-              
+
             </Route>
             <Route path="/sitemanager/" element={<SMlayout />} >
-               <Route path='dash' element={<SiteManagerDash/>}/>
-               <Route path='project' element={<SMproject/>}/>
-              
-            </Route>
-           
-         </Route>
-         <Route path="/ulayout" element={<Userlayout/>} >
-   <Route path="" element={<UserDash />} />   
-   <Route path='cproject'  element={<CreateProject/>} />
-   <Route path='myproject'  element={<Myproject/>} />
+              <Route path='dash' element={<SiteManagerDash />} />
+              <Route path='project' element={<SMproject />} />
 
+            </Route>
+            <Route path="/ulayout" element={<Userlayout />} >
+              <Route path="" element={<UserDash />} />
+              <Route path='cproject' element={<CreateProject />} />
+              <Route path='myproject' element={<Myproject />} />
+
+
+            </Route>
 
           </Routes>
+
         </BrowserRouter>
 
 
