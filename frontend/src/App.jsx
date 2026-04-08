@@ -32,7 +32,7 @@ function App() {
            
          </Route>
          <Route path="/ulayout" element={<Userlayout/>} >
-   <Route path="dash" element={<UserDash />} />   
+   <Route path="" element={<UserDash />} />   
    <Route path='cproject'  element={<CreateProject/>} />
    <Route path='myproject'  element={<Myproject/>} />
 

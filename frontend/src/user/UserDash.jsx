@@ -41,23 +41,23 @@ getprojectData();
    <>
   <div className="row mt-2">
     <div className="col-lg-3">
-      <div className="bg-success p-2 rounded-2">
-      <span className="fw-bold text-white">  65 %</span> <span className="text-white">Project Completion</span>
+      <div className="user-card p-2 rounded-2">
+      <span className="fw-bold text-white">  65 % <br /></span> <span className="text-white">Project Completion</span>
       </div>
     </div>
     <div className="col-lg-3">
-       <div className="bg-danger p-2 rounded-2">
-      <span className="fw-bold text-white">12</span> <span className="text-white">Days Until <br /> Deadline</span>
+       <div className="user-card p-2 rounded-2">
+      <span className="fw-bold text-white">12 <br /></span> <span className="text-white">Days Until  Deadline</span>
       </div>
     </div>
     <div className="col-lg-3">
-       <div className="bg-warning p-2 rounded-2">
-      <span className="fw-bold text-white">4</span> <span className="text-white">Unread <br /> Messages</span>
+       <div className="user-card p-2 rounded-2">
+      <span className="fw-bold text-white">4 <br /></span> <span className="text-white">Unread  Messages</span>
       </div>
     </div>
     <div className="col-lg-3">
-       <div className="bg-primary p-2 rounded-2">
-      <span className="fw-bold text-white">25200</span> <span className="text-white"> <br /> Total spent</span>
+       <div className="user-card p-2 rounded-2">
+      <span className="fw-bold text-white">25200 <br /></span> <span className="text-white"> Total spent</span>
       </div>
     </div>
   </div>
@@ -72,6 +72,16 @@ getprojectData();
       <p className=""><span className="fw-bold">End Date:</span> 07-04-2026</p>
       <hr />
       <p className=""><span className="fw-bold">Progress</span> : 65 %</p>
+      </div>
+
+
+         <div className="bg-light my-3"><p className="fw-bold ps-3 pt-1">Recent Activity</p> <hr />
+         <div className="">
+      <img src="/src/assets/logo.jpeg" alt="" height={50} /> <span>abhishek (contractor)</span>
+      <p className="">add site photo <br /> 1 hour ago</p> 
+ 
+    </div>
+
       </div>
       
     </div>
@@ -93,19 +103,33 @@ getprojectData();
                <p className="d-flex justify-content-between"><span className="fw-bold">spent so far :</span> <span className="">25000</span></p> <hr />
          <p className="d-flex justify-content-between"><span className="fw-bold">Start Date :</span> <span className="">07-04-2026</span></p> <hr />
          <p className="d-flex justify-content-between"><span className="fw-bold">Deadline :</span> <span className="">08-4-2026</span></p></div>
+    
+    <div className=" bg-light my-3 p-1">
+      <p className="fw-bold fs-5">Upcoming Task</p>
+      <hr />
+      <p className="fw-bold">
+       <span className='fs-4'><i class="fa-regular fa-circle-check text-success" ></i></span> Install kitchen Cabinets
+      </p>
+       Abhishek <i class="fa-solid fa-alarm-clock"></i> 07-04-2026
+
+       <p className="fw-bold">
+       <span className='fs-4'><i class="fa-regular fa-circle-check text-success" ></i></span> Install kitchen Cabinets
+      </p>
+       Abhishek <i class="fa-solid fa-alarm-clock"></i> 07-04-2026
+       <p className="fw-bold">
+       <span className='fs-4'><i class="fa-regular fa-circle-check text-success" ></i></span> Install kitchen Cabinets
+      </p>
+       Abhishek <i class="fa-solid fa-alarm-clock"></i> 07-04-2026
+       
+
+    </div>
+
     </div>
   </div>
 
   <div className="row">
     <div className="col-lg-3">
-      <div className=""><p className="">Recent Activity</p>
-    <div className="">
-      <img src="/src/assets/logo.jpeg" alt="" height={50} /> <span>abhishek (contractor)</span>
-      <p className="">add site photo</p> <span>1 hour ago</span>
- 
-    </div>
-
-      </div>
+   
     </div>
     <div className="col-lg-6"></div>
     <div className="col-lg-3"></div>

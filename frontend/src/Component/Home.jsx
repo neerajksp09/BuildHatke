@@ -35,6 +35,12 @@ function Home() {
         <>
  <Navbar/>
 
+  <div className="row">
+        <div className="col-sm-12 p-0" >
+          <img src="/src/assets/banner.png" alt="" className='img-fluid'/>
+        </div>
+      </div>
+
             {/* service section */}
             <div className="row">
                 <div className="col-md-10 mx-auto my-5 text-center our-service">

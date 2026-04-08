@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { Link, Outlet, useNavigate } from 'react-router-dom';
+import Navbar from '../Component/Navbar';
 
 function Login() {
 
@@ -64,24 +65,33 @@ const user= { email, pass }
 
   if (isLogin) {
     form = (
-      <form onSubmit={logcode} className='mx-auto w-25 my-5 '>
+      <form onSubmit={logcode} className='mx-auto w-75 my-5 '>
 
-        <label>Email</label>
-        <input type="email" className='form-control'
+        <div className="row">
+          <div className="col-lg-12">
+                <label className='label-control'>Your Email</label>
+        <input type="email" className='form-control form-input'
           value={email} onChange={(e) => setEmail(e.target.value)} />
-        <br />
+          </div>
 
-        <label>Password</label>
-        <input type="password" className='form-control'
+          <div className="col-lg-12">
+    <label>Password</label>
+        <input type="password" className='form-control form-input'
           value={pass} onChange={(e) => setPass(e.target.value)} />
-        <br />
+          </div>
+        </div>
+        
 
-        <button className='btn btn-success w-50 mx-auto d-flex justify-content-center'>
+       <div className="row mt-3">
+        <div className="col-lg-12">
+           <button className=' p-2 text-white btn-login w-100 mx-auto d-flex justify-content-center'>
           Login
         </button>
+        </div>
+       </div>
 
     
-        <p className='text-center mt-3'>
+        <p className='text-center mt-5'>
           Don't have an account?
           <span
             style={{ color: "blue", cursor: "pointer", marginLeft: "5px" }}
@@ -96,43 +106,63 @@ const user= { email, pass }
   }
   else {
     form = (
-      <form onSubmit={regcode} className='w-50 mx-auto '>
+      <form onSubmit={regcode} className='mx-auto w-75  my-5'>
 
-        <h4>Register</h4>
-
-        <label>Name</label>
-        <input type="text" className='form-control'
+<div className="row">
+  <div className="col-lg-6">
+ <label  className='label-control ps-2 '>Name</label>
+        <input type="text" className='form-control form-input'
           value={name} onChange={(e) => setName(e.target.value)} />
-        <br />
-
-        <label>Number</label>
-        <input type="number" className='form-control'
+  </div>
+  <div className="col-lg-6">
+    <label className='label-control ps-2 '>Number</label>
+        <input type="number" className='form-control form-input'
           value={number} onChange={(e) => setNumber(e.target.value)} />
-        <br />
-
-        <label>City</label>
-        <input type="text" className='form-control'
+  </div>
+</div>
+       
+<div className="row">
+  <div className="col-lg-6">
+    
+        <label className='label-control ps-2 pt-2'>City</label>
+        <input type="text" className='form-control form-input'
           value={city} onChange={(e) => setCity(e.target.value)} />
-        <br />
+  </div>
+  <div className="col-lg-6">
 
-        <label>Email</label>
-        <input type="email" className='form-control'
+        <label className='label-control ps-2 pt-2'>Email</label>
+        <input type="email" className='form-control form-input'
           value={email} onChange={(e) => setEmail(e.target.value)} />
-        <br />
+  </div>
+</div>
+       
 
-        <label>Password</label>
-        <input type="password" className='form-control'
+        
+<div className="row">
+  <div className="col-lg-6">
+    
+        <label className='label-control ps-2  pt-2'>Password</label>
+        <input type="password" className='form-control form-input'
           value={pass} onChange={(e) => setPass(e.target.value)} />
-        <br />
-
-        <label>Enquiry</label>
-        <textarea className='form-control'
+    
+  </div>
+  <div className="col-lg-6">
+     <label className='label-control ps-2 pt-4'>Confrim Password</label>
+        <input type='password' className='form-control form-input'
           value={enq} onChange={(e) => setEnq(e.target.value)} />
-        <br />
+  </div>
+</div>
 
-        <button className='btn btn-success w-50 mx-auto d-flex justify-content-center'>
+       
+      
+
+     <div className="row mt-3">
+      <div className="col-lg-12">
+           <button className=' p-2 text-white btn-login w-100 mx-auto d-flex justify-content-center'>
           Register
         </button>
+      </div>
+     </div>
 
     
         <p className='text-center mt-3'>
@@ -151,13 +181,70 @@ const user= { email, pass }
 
   return (
     <>
-      <h4 className='text-center'>
+    
+
+
+<Navbar
+/>
+
+
+<div className="row">
+  <div className="col-lg-6 p-0">
+<div id="carouselExampleCaptions" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/src/assets/site1.avif" height={600} class="d-block w-100 " alt="..."/>
+      <div class="carousel-caption d-none d-md-block">
+        <h5 className='slide-text'>First slide label</h5>
+        <p className='slide-text'>Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/src/assets/site2.avif"  height={600} class="d-block w-100" alt="..."/>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Second slide label</h5>
+        <p>Some representative placeholder content for the second slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/src/assets/site3.avif"  height={600} class="d-block w-100" alt="..."/>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Third slide label</h5>
+        <p>Some representative placeholder content for the third slide.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+  </div>
+
+  <div className="col-lg-6  bg-img">
+      <h4 className='ms-5 ps-4 mt-5 text'>
         {isLogin ? "Login" : "Register"}
       </h4>
+    <p className="  ms-5 ps-4 fw-bolder fs-4 text">Welcome Back to BuildHatke !</p>
+    <span className='ms-5 ps-4'>{isLogin ? "Sign in your account":"Sign up your account"}</span>
 
-      {form}
+  {form}
 
-      <Outlet />
+  </div>
+</div>
+
+
+
+      
     </>
   )
 }

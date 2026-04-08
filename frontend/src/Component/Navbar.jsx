@@ -64,11 +64,7 @@ Login <i class="fa-solid fa-arrow-right"></i>
         </div>
 
 
-      <div className="row">
-        <div className="col-sm-12 p-0" >
-          <img src="/src/assets/banner.png" alt="" className='img-fluid'/>
-        </div>
-      </div>
+    
 
 
 
