@@ -47,12 +47,7 @@ function Navbar(p) {
                 </div>
 
 
-
-              </div>
-            </div>
-          </nav>
-        </div>
-      </div>
+    
 
 
 

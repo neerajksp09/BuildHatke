@@ -277,3 +277,48 @@ border-bottom: 2px solid var(--orange);
   margin-top: 0;
   /* margin-right:10 px; */
 }
+
+.form-input{
+border-radius: 20px;
+border-color: gray;
+
+margin-top:5px;
+}
+
+.btn-login{
+border-radius: 20px;
+background: var(--lighttheam);
+border: none;
+color: white;
+}
+.slide-text{
+    color: var(--colorgray);
+}
+.bg-img{
+background-color:var(--colorgray);
+}
+.text{
+    color: var(--lighttheam);
+}
+.user-dash{
+background:rgb(84, 35, 0);
+}
+.btn-dash{
+   border: none;
+    color: white;
+    width:180px;
+}
+.btn-dash:hover{
+     background:rgba(245, 216, 198, 0.379);
+    border: none;
+    width: 180px;
+    color:white;
+
+}
+.user-card{
+    background: var(--orange);
+}
+.bg-color-user-dash{
+background: var(--colorgray);
+}
+/* abhishek css end */

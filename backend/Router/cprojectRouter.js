@@ -3,11 +3,13 @@ const cProjectModal = require('../Modal/cProjectModal');
 const cprojectRouter  = express.Router();
 
 cprojectRouter.get('/', async (req,res)=>{
-    const project = await cProjectModal.find();
+    const project = await cProjectModal.find().populate('uid');
+    
     res.json({"msg":"success","project":project})
 })
 cprojectRouter.post('/',async (req,res)=>{
     const project =await cProjectModal.create(req.body);
+    // console.log(req.body.uid);
     res.json({"msg":"success"});
 })
 cprojectRouter.get('/:id',async (req,res)=>{
