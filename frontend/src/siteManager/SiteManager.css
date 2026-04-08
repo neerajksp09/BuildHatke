@@ -1,0 +1,124 @@
+:root{
+  --theam: rgb(48, 34, 25);
+  --hcolor:rgb(59, 58, 56);
+  --orange:rgb(164, 91, 41);
+  --lighttheam:#624430;
+  --colorgray:rgb(226, 222, 220);
+   --heading-font: "Quintessential", serif;
+}
+
+.home-slider img{
+  height: 87vh;
+}
+.SMlogin-form{
+    background-color: var(--colorgray);
+}
+
+.SMlogin-form h2{
+    color: var(--lighttheam);
+    font-family: var(--heading-font);
+}
+.SMlogin-form input{
+    margin: 10px 0px;
+    padding: 10px 20px;
+    border-color: black;
+     border-radius: 20px;
+}
+.SMlogin-form input:focus{
+    box-shadow: none;
+      border-color: black;
+}
+.SMlogin-form select{
+    margin: 10px 0px;
+    padding: 10px 20px;
+    border-color: black;
+     border-radius: 20px;
+}
+.SMlogin-form select:focus{
+    box-shadow: none;
+      border-color: black;
+}
+
+.SMlogin-form textarea{
+    margin: 10px 0px;
+    padding: 10px 20px;
+    border-color: black;
+     border-radius: 20px;
+}
+.SMlogin-form textarea:focus{
+    box-shadow: none;
+      border-color: black;
+}
+
+
+.SMlogin-form button{
+    background-color: var(--theam);
+    color: white;
+    border-radius: 20px;
+}
+.SMlogin-form button:hover{
+    background-color: var(--theam);
+    color: white;
+
+}
+.SMlogin-form a{
+    color: black;
+    text-decoration: none;
+}
+.SMlogin-form p>a{
+   color: var(--lighttheam);
+}
+.register{
+    overflow-y: scroll;
+    height: 87vh;
+}
+/* dashboard start */
+.side-nav{
+    height: 100vh;
+    background-color: var(--theam);
+}
+.side-nav img{
+    height: 100px;
+    border-radius: 50%;
+    width: 100px;
+
+   
+}
+.side-nav h2{
+    color: white;
+    font-size: 2.5rem;
+    display: inline-block;
+   
+     font-family: var(--heading-font);
+
+}
+.side-nav .line{
+    height: 2px ;
+    background-color: var(--colorgray);
+    opacity: 0.5;
+
+}
+.side-nav  ul{
+    list-style: none;
+
+}
+.side-nav  ul>li{
+    padding: 10px  0px;
+   
+}
+.side-nav  ul>li>a{
+ text-decoration: none;
+ color: white;
+ font-size: 1.3rem;
+   
+}
+.nav-row-2{
+
+    color:var(--theam);
+    border-bottom: 2px solid var(--colorgray);
+}
+.nav-row-2 img{
+height: 60px;
+width: 60px;
+border-radius: 50%; 
+}

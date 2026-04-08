@@ -26,6 +26,7 @@ import TestimonialCard from './TestimonialCard'
 import monitor from '../assets/monitor.png'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import { Link } from 'react-router-dom'
 // import Navbar from './Component/Navbar'
 // import Footer from './Component/Footer'
 
@@ -33,7 +34,24 @@ import Footer from './Footer'
 function Home() {
     return (
         <>
- <Navbar/>
+ <Navbar button={ <div class="dropdown ">
+                    <button class="btn btn-secondary  px-2 py-2  " type="submit">
+                      Login <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <ul class="dropdown-menu  rounded-0 bg-dark boder-none" style={{ right: "0" }}>
+
+                      <li><Link to="Login" className='btn btn-dark p-2 rounded-0 dropdown-item' >Login</Link></li>
+                      <li><Link to="conreg" class="btn btn-dark p-2 rounded-0  dropdown-item" >Become a Contractor</Link></li>
+
+                      <li><Link to={"sitemanagerlogin"} class="btn btn-dark p-2 rounded-0  dropdown-item" >Site Manager</Link></li>
+                    </ul>
+                  </div>} />
+    {/* Bannner  */}
+    <div className="row">
+        <div className="col-sm-12 p-0" >
+          <img src="/src/assets/banner.png" alt="" className='img-fluid'/>
+        </div>
+      </div>
 
             {/* service section */}
             <div className="row">
