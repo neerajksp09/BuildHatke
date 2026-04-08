@@ -3,7 +3,7 @@ import Navbar from '../Component/Navbar'
 import './SiteManager.css'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
-
+import { toast } from 'react-toastify'
 function SMlogin() {
 
     const [islogin, setIslogin] = useState(true);
@@ -30,7 +30,11 @@ function SMlogin() {
         console.log(res);
 
         if (res.data.msg == "success") {
-            console.log(res.data.user)
+           toast.success("Registation Success")
+            // console.log(res.data.user)
+        }
+        else{
+            toast.error("Something went Wrong")
         }
 
     }
