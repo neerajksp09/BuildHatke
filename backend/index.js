@@ -4,6 +4,7 @@ const cors = require('cors');
 const userRegRouter = require('./Router/userRegRouter');
 const contractorRoute = require('./Router/contractorRoute');
 const cprojectRouter = require('./Router/cprojectRouter');
+const siteManagerRouter = require('./Router/siteManagerRouter');
 const app = express();
 const port = 3000;
 mongoose.connect('mongodb://localhost:27017/buildhatke').then(()=>{
@@ -14,8 +15,11 @@ mongoose.connect('mongodb://localhost:27017/buildhatke').then(()=>{
 app.use(express.json())
 app.use(cors())
 
+
+
 app.use("/api/reg/",userRegRouter)
 app.use('/api/con/reg',contractorRoute);
 app.use('/api/user/project',cprojectRouter);
+app.use('/api/sitemanager/reg',siteManagerRouter)
 app.listen(port ,()=>{console.log(`Running on ${port}`)});
 
