@@ -59,14 +59,14 @@ function App() {
               <Route path='project' element={<SMproject />} />
 
             </Route>
-            <Route path="/ulayout" element={<Userlayout />} >
-              <Route path="" element={<UserDash />} />
-              <Route path='cproject' element={<CreateProject />} />
-              <Route path='myproject' element={<Myproject />} />
+           
+       
+         <Route path="/ulayout" element={<Userlayout/>} >
+   <Route path="" element={<UserDash />} />   
+   <Route path='cproject'  element={<CreateProject/>} />
+   <Route path='myproject'  element={<Myproject/>} />
 
-
-            </Route>
-
+  </Route>
           </Routes>
 
         </BrowserRouter>
