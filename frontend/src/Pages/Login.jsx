@@ -31,11 +31,9 @@ const user= { email, pass }
           localStorage.setItem("userId", res.data.user._id);
         }
 
-        if (res.data.role == "Contractor") {
-          navigate('/condash');
-        } else {
+        if (res.data.role == "user") {
           navigate('/ulayout');
-        }
+        } 
 
       } else if (res.data.msg === "user not found") {
         toast.error("User not found");

@@ -10,5 +10,23 @@ contractorRoute.get('/',async (req,res)=>{
     const con = await contractorModal.find();
     res.json({"msg":"success","con":con})
 })
+contractorRoute.get('/:id',async (req,res)=>{
+    const con = await contractorModal.findById(req.params.id);
+    res.json({"msg":"success","con":con})
+})
+contractorRoute.post('/login', async (req,res)=>{
+    const { email, pass } = req.body;
+    const con = await contractorModal.findOne({email});
+
+    if(con){
+        if(con.pass !==pass){
+             return res.json({ msg: "invalid password" });
+        }
+        res.json({ msg: "success", con, role:con.role });
+    }
+    else{
+         return res.json({ msg: "user not found" });
+    }
+})
 
 module.exports=contractorRoute;

@@ -20,8 +20,8 @@ function Userlayout() {
            
         </div>
 
-        <div className="col-lg-10 bg-color-user-dash">
-<div className="row mx-1 ">
+        <div className="col-lg-10 overflow bg-color-user-dash">
+<div className="row mx-1 sticky-top ">
     <div className="col-lg-12 d-flex justify-content-end rounded-2 " style={{background:"rgb(84, 35, 0)"}}>
         <i class="fa-solid fa-bell broder-end pt-3 pe-4 text-white" ></i>
         <div>
