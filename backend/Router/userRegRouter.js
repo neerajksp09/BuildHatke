@@ -36,26 +36,16 @@ userRegRouter.delete('/:id',async (req,res)=>{
 
 userRegRouter.post("/login", async (req, res) => {
     const { email, pass } = req.body;
-    // console.log("email"+ email);
+   
     const user = await userRegModal.findOne({ email });
-     const contractor = await contractorModal.findOne({ email });
-    // console.log("user"+user);
+   
 if(user){
      if (user.pass !== pass) {
         return res.json({ msg: "invalid password" });
     }
-
-    res.json({ msg: "success", user });
     
-}
-
-else if(contractor){
-      if (contractor.pass !== pass) {
-        return res.json({ msg: "invalid password" });
-    }
-
-    res.json({ msg: "success", role:contractor.role});
-
+    res.json({ msg: "success",user,role: user.role});
+    
 }
 
 else{

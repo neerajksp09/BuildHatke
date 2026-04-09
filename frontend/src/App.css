@@ -321,4 +321,9 @@ background:rgb(84, 35, 0);
 .bg-color-user-dash{
 background: var(--colorgray);
 }
+
+.overflow{
+    height:100vh;
+    overflow-y: scroll;
+}
 /* abhishek css end */

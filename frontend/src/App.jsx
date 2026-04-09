@@ -20,6 +20,7 @@ import SMlogin from './siteManager/SMlogin'
 import SiteManagerDash from './siteManager/SiteManagerDash'
 import SMlayout from './siteManager/SMlayout'
 import SMproject from './siteManager/SMproject'
+import Profile from './contractor/Profile'
 
 function App() {
 
@@ -47,7 +48,7 @@ function App() {
 
             <Route path="/conlayout" element={<Conlayout />} >
               <Route path='condash' element={<ConDash />} />
-              {/* <Route path='bids' element={<Bids/>}/> */}
+              <Route path='profile' element={<Profile/>}/>
             </Route>
             <Route path="/sitemanagerlogin/" element={<SiteManagerLayout />} >
               <Route path='' element={<SMlogin />} />
