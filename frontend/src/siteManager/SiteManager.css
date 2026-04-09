@@ -78,15 +78,15 @@
     background-color: var(--theam);
 }
 .side-nav img{
-    height: 100px;
+    height: 80px;
     border-radius: 50%;
-    width: 100px;
+    width: 80px;
 
    
 }
 .side-nav h2{
     color: white;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     display: inline-block;
    
      font-family: var(--heading-font);
@@ -109,16 +109,65 @@
 .side-nav  ul>li>a{
  text-decoration: none;
  color: white;
- font-size: 1.3rem;
+ font-size: 1.2rem;
    
 }
 .nav-row-2{
 
-    color:var(--theam);
-    border-bottom: 2px solid var(--colorgray);
+    color:white;
+    background-color: var(--theam);
+}
+.btn-toggle {
+    background-color:transparent !important;
+    border: none !important;
 }
 .nav-row-2 img{
 height: 60px;
 width: 60px;
 border-radius: 50%; 
 }
+.btn-close{
+    /* filter: invert(1);    */
+}
+
+
+
+
+
+.badge {
+  position: absolute;
+  top: 15px;
+  right: px;
+  background: red;
+  color: white;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 50%;
+}
+
+
+
+/* Cards */
+.stat {
+  color: white;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.green { background:var(--lighttheam) }
+.orange { background:var(--lighttheam) }
+.red { background:var(--lighttheam) }
+.blue {background:var(--lighttheam) }
+
+/* Lists */
+.list {
+  padding: 0;
+  list-style: none;
+}
+
+.list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
