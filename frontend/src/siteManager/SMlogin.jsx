@@ -48,14 +48,14 @@ async function logcode(e) {
 
         if (res.data.msg == "success") {
             console.log(res.data.user)
-            window.alert('login success')
+            toast.success('login success')
             if(res.data.user){
                 localStorage.setItem("siteManagerId",res.data.user._id)
             }
-            navigate("/sitemanager")
+            navigate("/sitemanager/dash")
         }
         if(res.data.msg=="user not found"){
-            window.alert("user not Found")
+            toast.error("User not Found")
         }
 
 
