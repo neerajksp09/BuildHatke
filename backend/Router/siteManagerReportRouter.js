@@ -15,6 +15,16 @@ smReportRouter.post('/',async(req,res)=>{
     msg:"success",
     "report":report
    })
+   
+})
+smReportRouter.put('/:id',async(req,res)=>{
+   const id =req.params.id
+   const report = await SiteManagerReport.findByIdAndUpdate(req.body,id)
+   return res.json({
+    msg:"success",
+    "report":report
+   })
+   
 })
 
 module.exports=smReportRouter
