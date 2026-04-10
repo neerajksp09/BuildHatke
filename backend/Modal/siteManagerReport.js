@@ -11,8 +11,17 @@ const SiteManagerReport = mongoose.Schema({
     smuid: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "SiteManager",
-        required: true
+        
     },
+    uid:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"user"
+    },
+    projectId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Project"
+    },
+
      status: {
         type: String,
         default:"Deactive"
