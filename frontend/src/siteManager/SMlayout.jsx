@@ -14,25 +14,25 @@ function SMlayout() {
             <div className="line"></div>
             <ul>
               <li>
-                <Link to={'dash'}><i class="fa-solid fa-house"></i> Dashboard</Link>
+                <Link to={'dash'}><i className="fa-solid fa-house"></i> Dashboard</Link>
               </li>
               <li>
-                <Link to={"project"}><i class="fa-solid fa-briefcase"></i> Projects</Link>
+                <Link to={"project"}><i className="fa-solid fa-briefcase"></i> Projects</Link>
               </li>
               <li>
-                <a href=""><i class="fa-solid fa-helmet-safety"></i> Constructors</a>
+                <a href=""><i className="fa-solid fa-helmet-safety"></i> Constructors</a>
               </li>
               <li>
-                <a href=""><i class="fa-brands fa-bitbucket"></i> Materials</a>
+                <a href=""><i className="fa-brands fa-bitbucket"></i> Materials</a>
               </li>
               <li>
-                <a href=""><i class="fa-solid fa-calendar-check"></i> Tasks</a>
+                <a href=""><i className="fa-solid fa-calendar-check"></i> Tasks</a>
               </li>
               <li>
-                <a href=""><i class="fa-solid fa-hand-holding-dollar"></i> Expenses</a>
+                <a href=""><i className="fa-solid fa-hand-holding-dollar"></i> Expenses</a>
               </li>
               <li>
-                <a href=""><i class="fa-solid fa-chart-area"></i> Reports</a>
+                <a href=""><i className="fa-solid fa-chart-area"></i> Reports</a>
               </li>
             </ul>
 
@@ -46,40 +46,40 @@ function SMlayout() {
               <div className='nav-row-2 px-3 py-3 rounded-4'style={{boxShadow:"2px 2px 10px rgb(48, 34, 25)"}} >
                 <div className="row">
                 <div className="col-4 ">
-                  <button class="btn btn-primary fs-4 d-block d-xxl-none btn-toggle "  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="fa-solid fa-bars"></i></button>
+                  <button className="btn btn-primary fs-4 d-block d-xxl-none btn-toggle "  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i className="fa-solid fa-bars"></i></button>
 
-                  <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                  <div className="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabIndex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                    
-                    <div class="offcanvas-body p-0" > 
+                    <div className="offcanvas-body p-0" > 
                       
                       <div className="side-nav ">
                         <div className='d-flex  '>
                           <img src="/src/assets/logo.jpeg" alt="" className='img-fluid  m-3' />
                           <h2 className='  text-white mt-4'>BuildHatke</h2>
-                          <button type="button" class="btn-close mt-4 p-2 fs-4   ms-auto me-4" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                          <button type="button" className="btn-close mt-4 p-2 fs-4   ms-auto me-4" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
                         <div className="line"></div>
                         <ul>
                           <li>
-                            <Link to={'dash'}><i class="fa-solid fa-house"></i> Dashboard</Link>
+                            <Link to={'dash'}><i className="fa-solid fa-house"></i> Dashboard</Link>
                           </li>
                           <li>
-                            <Link to={"project"}><i class="fa-solid fa-briefcase"></i> Projects</Link>
+                            <Link to={"project"}><i className="fa-solid fa-briefcase"></i> Projects</Link>
                           </li>
                           <li>
-                            <a href=""><i class="fa-solid fa-helmet-safety"></i> Constructors</a>
+                            <a href=""><i className="fa-solid fa-helmet-safety"></i> Constructors</a>
                           </li>
                           <li>
-                            <a href=""><i class="fa-brands fa-bitbucket"></i> Materials</a>
+                            <a href=""><i className="fa-brands fa-bitbucket"></i> Materials</a>
                           </li>
                           <li>
-                            <a href=""><i class="fa-solid fa-calendar-check"></i> Tasks</a>
+                            <a href=""><i className="fa-solid fa-calendar-check"></i> Tasks</a>
                           </li>
                           <li>
-                            <a href=""><i class="fa-solid fa-hand-holding-dollar"></i> Expenses</a>
+                            <a href=""><i className="fa-solid fa-hand-holding-dollar"></i> Expenses</a>
                           </li>
                           <li>
-                            <a href=""><i class="fa-solid fa-chart-area"></i> Reports</a>
+                            <a href=""><i className="fa-solid fa-chart-area"></i> Reports</a>
                           </li>
                         </ul>
 
@@ -93,7 +93,7 @@ function SMlayout() {
                 </div>
                 <div className="col-8  d-flex gap-2 justify-content-end ">
                   <div className="icon fs-3 mt-2">
-                    <i class="fa-solid fa-bell"></i>
+                    <i className="fa-solid fa-bell"></i>
                   </div>
                   <div className="hl"></div>
                   <div className="pic">

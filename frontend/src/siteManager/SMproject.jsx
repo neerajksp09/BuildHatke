@@ -10,21 +10,23 @@ function SMproject() {
     const [timeline, setTimeline] = useState('')
     const [length, setLength] = useState('')
     const [selecteddata, setSelecteddata] = useState([])
-
+   
     const getuserdata = async () => {
         const res = await axios.get('http://localhost:3000/api/user/project')
         if (res.data.msg == "success") {
             setUserdata(res.data.project);
-            console.log(res.data.project);
+            // console.log(res.data.project);
             // const d= res.data.project.filter((e)=>e.uid._id==localStorage.getItem())
         }
     }
+    var totalproject = userdata.length
+  
 
     const sitemanagerdata = async () => {
         const res = await axios.get(`http://localhost:3000/api/sitemanager/reg/${localStorage.getItem('siteManagerId')}`)
         if (res.data.msg == "success") {
             setSitemanager(res.data.user)
-            console.log("manager", res.data.user)
+            // console.log("manager", res.data.user)
         }
     }
 
@@ -32,52 +34,89 @@ function SMproject() {
 
     async function applycode(e) {
         e.preventDefault()
-
-
         // your report is send
-
         const report = {
             budget,
-   timeline,
-   smuid:sitemanager._id,
-   uid:selecteddata.uid._id,
-   projectId:selecteddata._id
+            timeline,
+            smuid: sitemanager._id,
+            uid: selecteddata.uid._id,
+            projectId: selecteddata._id
 
         }
-        console.log(report)
-        const res = await axios.post('http://localhost:3000/api/sitemanager/report', report)
+
+      
+   
+         const res = await axios.post('http://localhost:3000/api/sitemanager/report', report)
         if (res.data.msg == "success") {
             toast.success('Apply Success')
-
+            console.log("send report", res.data.report)
+            getyourreport(); 
         }
         else {
             toast.error('Something Went Wrong')
         }
+       }
+   
 
-
-    }
-    //    your report is get
+        //    your report is get
     const getyourreport = async () => {
-        const res = await axios.get("http://localhost:3000/api/sitemanager/report");
+        const res = await axios.get(`http://localhost:3000/api/sitemanager/report`);
         if (res.data.msg == "success") {
             setYourreport(res.data.report)
             setLength(res.data.report.length);
             getuserdata();
-            console.log("My Project", res.data.report)
+            
 
         }
+        
     }
 
-    const myReport = yourreport.filter((item) => {
-       return item.smuid._id == localStorage.getItem('siteManagerId') &&
-    item.projectId?._id == selecteddata?._id
-    })
 
+   
+
+
+
+    const myReport = yourreport.filter((item) => {
+        return item.smuid._id == localStorage.getItem('siteManagerId') &&
+            item.projectId?._id == selecteddata?._id
+
+    })
+    //aproved report length
+   const filterapprovedreport=  myReport.filter((i)=>i.status=="Aproved");
+
+   console.log("filter report",filterapprovedreport.length)
 
 
     async function handleRow(id) {
         const filterdata = userdata.find((item) => item._id == id)
         setSelecteddata(filterdata)
+        console.log("My my filter report", myReport)
+
+    }
+
+    // Get final report from  homeOwner
+    const acceptproject = async (u) => {
+        const status = { status: "Aproved" }
+
+        if (u.status === "Aproved") {
+            toast.error("you have already Aproved")
+        }
+        if(u.status=="in-progress") {
+            const res = await axios.put(`http://localhost:3000/api/sitemanager/report/${u._id}`, status)
+            if (res.data.msg == "success") {
+                toast.success("Approved Success")
+                
+         
+            }
+            else {
+                toast.error("something went wrong")
+            }
+
+        }
+        else{
+            toast.error("You can not approved")
+        }
+
 
     }
 
@@ -99,11 +138,33 @@ function SMproject() {
             <div className="row">
                 <div className="col-md-11 mx-auto my-4 ">
 
-                    <h2 className='my-4 text-center'>Project:</h2>
+                   <div className="row project-card-row">
+                    <div className="col-md-4 p-3">
+                        <div className="card p-3  h-100 d-flex flex-column">
+                              <h4> Total Projects</h4>
+                              <h1 className='text-danger'>{totalproject}</h1>
 
-                    <div className="table-reponsive">
-                        <table className="table table-striped table-bordered ">
-                            <thead>
+                        </div>
+                    </div>
+                    <div className="col-md-4 p-3">
+                        <div className="card p-3  h-100 d-flex flex-column">
+                              <h4> Under Request Projects</h4>
+                              <h1 className='text-warning'>{length}</h1>
+
+                        </div>
+                    </div>
+                    <div className="col-md-4 p-3">
+                        <div className="card p-3 h-100 d-flex flex-column">
+                              <h4 > Aprroved Project</h4>
+                              <h1 className='text-success'>{filterapprovedreport.length}</h1>
+
+                        </div>
+                    </div>
+                   </div>
+
+                    <div className="table-reponsive mt-4">
+                        <table className="table table-bordered ">
+                            <thead className='table-dark'>
                                 <tr className='text-center'>
                                     <th>S no.</th>
                                     <th>Name</th>
@@ -114,11 +175,11 @@ function SMproject() {
 
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody >
                                 {
-                                    userdata.map((e) => (
-                                        <tr className='text-center'>
-                                            <td>1</td>
+                                    userdata.map((e,i) => (
+                                        <tr className='text-center' key={i}>
+                                            <td>{i+1}</td>
                                             <td>{e.uid.name}</td>
                                             <td>{e.uid.number}</td>
                                             <td>{e.location}</td>
@@ -128,7 +189,7 @@ function SMproject() {
                                                     View Project
                                                 </button>
                                             </td>
-                                            <td><button className='btn btn-outline-danger'>Reject</button></td>
+                                         
                                         </tr>
                                     ))
                                 }
@@ -145,7 +206,7 @@ function SMproject() {
 
 
             {/* modal */}
-            <div className="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade " id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-xl  ">
                     <div className="modal-content ">
                         <div className="modal-header">
@@ -245,7 +306,7 @@ function SMproject() {
                                             <label htmlFor="" className='label-control'>TimeLine</label>
                                             <input type="text" className='form-control' value={timeline} onChange={(e) => { setTimeline(e.target.value) }} />
 
-                                            <button type="submit" className="btn btn-danger w-100 mt-4" data-bs-dismiss="modal" >Apply</button>
+                                            <button type="submit" className="btn btn-danger w-100 mt-4" data-bs-dismiss="modal" disabled={myReport?.length>0} >Apply</button>
 
 
 
@@ -263,22 +324,26 @@ function SMproject() {
                                         <table className='table table-muted table-bordered '>
                                             <thead className='table-dark'>
                                                 <tr>
+                                                    <th>S.no</th>
                                                     <th>User Name</th>
                                                     <th>Plot Location</th>
                                                     <th>Your Budget</th>
                                                     <th>Your Timeline</th>
                                                     <th>Project Status</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 {
                                                     myReport.map((u, j) => (
                                                         <tr key={j}>
+                                                            <td>{j+1}</td>
                                                             <td>{u.uid?.name}</td>
                                                             <td>{u.projectId?.location}</td>
                                                             <td>{u.budget}</td>
                                                             <td>{u.timeline}</td>
-                                                            <td>{u.projectId?.status}</td>
+                                                            <td>{u?.status}</td>
+                                                            <td><button className='btn btn-danger' onClick={() => acceptproject(u)}>Accept Project</button></td>
                                                         </tr>
                                                     ))
                                                 }

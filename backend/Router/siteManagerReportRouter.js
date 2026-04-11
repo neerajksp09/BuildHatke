@@ -9,6 +9,15 @@ smReportRouter.get('/',async(req,res)=>{
     "report":report
    })
 })
+smReportRouter.get('/:id', async (req, res) => {
+   const id = req.params.id;
+
+   const report = await SiteManagerReport.findById(id).populate('smuid').populate('uid').populate('projectId')
+   return res.json({
+      msg: "success",
+      report
+   });
+});
 smReportRouter.post('/',async(req,res)=>{
    const report = await SiteManagerReport.create(req.body)
    return res.json({
