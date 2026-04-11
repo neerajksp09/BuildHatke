@@ -15,7 +15,7 @@ contractorRoute.get('/:id',async (req,res)=>{
     res.json({"msg":"success","con":con})
 })
 contractorRoute.post('/login', async (req,res)=>{
-    const { email, pass } = req.body;
+    const { email, pass , cpass} = req.body;
     const con = await contractorModal.findOne({email});
 
     if(con){

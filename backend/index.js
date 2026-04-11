@@ -23,5 +23,8 @@ app.use('/api/con/reg',contractorRoute);
 app.use('/api/user/project',cprojectRouter);
 app.use('/api/sitemanager/reg',siteManagerRouter)
 app.use('/api/sitemanager/report',smReportRouter)
+
+
+
 app.listen(port ,()=>{console.log(`Running on ${port}`)});
 

@@ -21,7 +21,6 @@ import SiteManagerDash from './siteManager/SiteManagerDash'
 import SMlayout from './siteManager/SMlayout'
 import SMproject from './siteManager/SMproject'
 import Profile from './contractor/Profile'
-import SMconstructors from './siteManager/SMconstructors'
 
 function App() {
 
@@ -42,6 +41,7 @@ function App() {
               <Route path="dash" element={<UserDash />} />
               <Route path='cproject' element={<CreateProject />} />
               <Route path='myproject' element={<Myproject />} />
+              <Route path='bids' element={<Bids />} />
 
             </Route>
 
