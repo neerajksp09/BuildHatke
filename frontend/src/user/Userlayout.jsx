@@ -18,28 +18,24 @@ function Userlayout() {
               </div>
               <div className="line"></div>
               <ul>
-                <li>
-                  <Link to={'dash'}><i class="fa-solid fa-house"></i> Dashboard</Link>
-                </li>
-                <li>
-                  <Link to={"project"}><i class="fa-solid fa-briefcase"></i> Projects</Link>
-                </li>
-                <li>
-                  <a href=""><i class="fa-solid fa-helmet-safety"></i> Constructors</a>
-                </li>
-                <li>
-                  <a href=""><i class="fa-brands fa-bitbucket"></i> Materials</a>
-                </li>
-                <li>
-                  <a href=""><i class="fa-solid fa-calendar-check"></i> Tasks</a>
-                </li>
-                <li>
-                  <a href=""><i class="fa-solid fa-hand-holding-dollar"></i> Expenses</a>
-                </li>
-                <li>
-                  <a href=""><i class="fa-solid fa-chart-area"></i> Reports</a>
-                </li>
-              </ul>
+                            <li>
+                          <Link to="" ><i class="fa-solid fa-house"></i> Dashboard</Link>
+                            </li>
+                    
+                            <li>
+                           <Link to="cproject"><i class="fa-solid fa-circle-plus"></i> Create Project</Link>
+                            </li>
+                            <li>
+                                <Link to="myproject"><i class="fa-solid fa-list-check"></i> My project</Link>
+                            </li>
+                            <li>
+                                   <Link to="bids"><i class="fa-solid fa-arrow-right-arrow-left"></i> Bids</Link>
+                            </li>
+                            <li>
+                            <button className='' onClick={logout}><i class="fa-solid fa-logout"></i>Logout</button>
+                            </li>
+                          </ul>
+  
   
   
   
