@@ -11,7 +11,7 @@ function Login() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [city, setCity] = useState('');
-  const [enq, setEnq] = useState('');
+  const [cpass, setcpass] = useState('');
 
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
@@ -47,18 +47,20 @@ const user= { email, pass }
 
    const regcode=  async(e)=>{
           e.preventDefault()
-  
-          const user ={name,email,pass,city,number,enq,};
+          const user ={name,email,pass,city,number,cpass,};
+          if(cpass!==pass){
+            toast.error("Confirm password Does not Match")
+          }else{
           const res= await axios.post('http://localhost:3000/api/reg',user)
           if(res.data.msg=="success"){
-              toast.success("Enquiry successfull...")
+              toast.success("Registration successfull...")
               setIsLogin(true); 
           }
           else{
               toast.error("Something went wrong...")
           }
       }
-
+ }
   let form;
 
   if (isLogin) {
@@ -68,13 +70,13 @@ const user= { email, pass }
         <div className="row">
           <div className="col-lg-12">
                 <label className='label-control'>Your Email</label>
-        <input type="email" className='form-control form-input'
+        <input type="email" className='form-control form-input' required
           value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
 
           <div className="col-lg-12">
     <label>Password</label>
-        <input type="password" className='form-control form-input'
+        <input type="password" className='form-control form-input' required
           value={pass} onChange={(e) => setPass(e.target.value)} />
           </div>
         </div>
@@ -109,12 +111,12 @@ const user= { email, pass }
 <div className="row">
   <div className="col-lg-6">
  <label  className='label-control ps-2 '>Name</label>
-        <input type="text" className='form-control form-input'
+        <input type="text" className='form-control form-input' required
           value={name} onChange={(e) => setName(e.target.value)} />
   </div>
   <div className="col-lg-6">
     <label className='label-control ps-2 '>Number</label>
-        <input type="number" className='form-control form-input'
+        <input type="number" className='form-control form-input' required
           value={number} onChange={(e) => setNumber(e.target.value)} />
   </div>
 </div>
@@ -123,13 +125,13 @@ const user= { email, pass }
   <div className="col-lg-6">
     
         <label className='label-control ps-2 pt-2'>City</label>
-        <input type="text" className='form-control form-input'
+        <input type="text" className='form-control form-input' required
           value={city} onChange={(e) => setCity(e.target.value)} />
   </div>
   <div className="col-lg-6">
 
         <label className='label-control ps-2 pt-2'>Email</label>
-        <input type="email" className='form-control form-input'
+        <input type="email" className='form-control form-input' required
           value={email} onChange={(e) => setEmail(e.target.value)} />
   </div>
 </div>
@@ -140,14 +142,14 @@ const user= { email, pass }
   <div className="col-lg-6">
     
         <label className='label-control ps-2  pt-2'>Password</label>
-        <input type="password" className='form-control form-input'
+        <input type="password" className='form-control form-input' required
           value={pass} onChange={(e) => setPass(e.target.value)} />
     
   </div>
   <div className="col-lg-6">
      <label className='label-control ps-2 pt-4'>Confrim Password</label>
-        <input type='password' className='form-control form-input'
-          value={enq} onChange={(e) => setEnq(e.target.value)} />
+        <input type='password' className='form-control form-input' required
+          value={cpass} onChange={(e) => setcpass(e.target.value)} />
   </div>
 </div>
 
