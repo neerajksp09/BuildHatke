@@ -35,14 +35,17 @@ userRegRouter.delete('/:id',async (req,res)=>{
 // login code 
 
 userRegRouter.post("/login", async (req, res) => {
-    const { email, pass } = req.body;
+    const { email, pass, cpass } = req.body;
    
     const user = await userRegModal.findOne({ email });
    
 if(user){
-     if (user.pass !== pass) {
+     if (user.pass !== pass ) {
         return res.json({ msg: "invalid password" });
     }
+    // if(cpass !== pass){
+    //      return res.json({ msg: "Does not Confirm password" });
+    // }
     
     res.json({ msg: "success",user,role: user.role});
     

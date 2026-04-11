@@ -8,6 +8,10 @@ const contractorSchema=  mongoose.Schema({
         type:String,
         required:true
     },
+    cpass:{
+        type:String,
+        required:true
+    },
     name:{
         type:String,
         required:true

@@ -15,7 +15,7 @@ const userSchema= mongoose.Schema({
         type:String,
         required:true
     }
-    ,enq:{
+    ,cpass:{
         type:String,
         required:true
     },

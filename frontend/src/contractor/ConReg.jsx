@@ -15,12 +15,19 @@ function ConReg() {
     const [certification,setCertification]=useState('');
      const [email, setEmail] = useState('');
       const [pass, setPass] = useState('');
+      const [cpass, setCpass] = useState('');
       const [siteman, setSiteMan] = useState('');
       const[manager,setManager]=useState([]);
 const navigate =useNavigate();
       const regcode = async (e)=>{
            e.preventDefault()
-        const con ={name, number, address, licenseNumber,siteman, exp, certification, email, pass}
+        const con ={name, number, address, licenseNumber,siteman, exp, certification, email, pass,cpass}
+        if(cpass!==pass){
+          toast.error("confirm password does not match")
+        }
+        else{
+
+        
         const res = await axios.post('http://localhost:3000/api/con/reg',con);
         if(res.data.msg=="success"){
             toast.success("contractor register")
@@ -31,6 +38,7 @@ const navigate =useNavigate();
         else{
             toast.error("something went wrong")
         }
+      }
       }
 
  const logcode = async (e) => {
@@ -174,6 +182,12 @@ getmanager();
     </div>
   </div>
 <div className="row">
+
+  <div className="col-lg-6">
+      <label className='label-control ps-2 pt-2'>Confirm Password</label>
+      <input type="password" className='form-control form-input'
+        value={cpass} onChange={(e) => setCpass(e.target.value)} />
+    </div>
     <div className="col-lg-6">
       <label className='label-control ps-2 pt-2'>Site Manager</label>
       <select value={siteman} onChange={(e)=>setSiteMan(e.target.value)}  class="form-select form-select-lg form-select-sm mb-3" aria-label="Large select example">
@@ -206,7 +220,7 @@ getmanager();
     <>
    <div className="row">
   <div className="col-lg-6 p-0">
-<div id="carouselExampleCaptions" class="carousel slide">
+<div id="carouselExampleCaptions" class="carousel slide ">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -214,21 +228,21 @@ getmanager();
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/src/assets/site1.avif" height={600} class="d-block w-100 " alt="..."/>
+      <img src="/src/assets/site1.avif" h-100 class="d-block w-100 " alt="..."/>
       <div class="carousel-caption d-none d-md-block">
         <h5 className='slide-text'>First slide label</h5>
         <p className='slide-text'>Some representative placeholder content for the first slide.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="/src/assets/site2.avif"  height={600} class="d-block w-100" alt="..."/>
+      <img src="/src/assets/site2.avif" h-100 class="d-block w-100" alt="..."/>
       <div class="carousel-caption d-none d-md-block">
         <h5>Second slide label</h5>
         <p>Some representative placeholder content for the second slide.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="/src/assets/site3.avif"  height={600} class="d-block w-100" alt="..."/>
+      <img src="/src/assets/site3.avif"  h-100 class="d-block w-100" alt="..."/>
       <div class="carousel-caption d-none d-md-block">
         <h5>Third slide label</h5>
         <p>Some representative placeholder content for the third slide.</p>
