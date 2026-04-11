@@ -65,7 +65,7 @@ const user= { email, pass }
 
   if (isLogin) {
     form = (
-      <form onSubmit={logcode} className='mx-auto w-75 my-5 '>
+      <form onSubmit={logcode} className='mx-auto w-100 my-5 '>
 
         <div className="row">
           <div className="col-lg-12">
@@ -106,7 +106,7 @@ const user= { email, pass }
   }
   else {
     form = (
-      <form onSubmit={regcode} className='mx-auto w-75  my-5'>
+      <form onSubmit={regcode} className='mx-auto w-100  my-5'>
 
 <div className="row">
   <div className="col-lg-6">
@@ -197,22 +197,22 @@ const user= { email, pass }
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="/src/assets/site1.avif" height={600} class="d-block w-100 " alt="..."/>
+    <div class="carousel-item h-50 active">
+      <img src="/src/assets/site1.avif" h-100 class="d-block w-100 " alt="..."/>
       <div class="carousel-caption d-none d-md-block">
         <h5 className='slide-text'>First slide label</h5>
         <p className='slide-text'>Some representative placeholder content for the first slide.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="/src/assets/site2.avif"  height={600} class="d-block w-100" alt="..."/>
+      <img src="/src/assets/site2.avif" h-100 class="d-block w-100" alt="..."/>
       <div class="carousel-caption d-none d-md-block">
         <h5>Second slide label</h5>
         <p>Some representative placeholder content for the second slide.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="/src/assets/site3.avif"  height={600} class="d-block w-100" alt="..."/>
+      <img src="/src/assets/site3.avif" h-100 class="d-block w-100" alt="..."/>
       <div class="carousel-caption d-none d-md-block">
         <h5>Third slide label</h5>
         <p>Some representative placeholder content for the third slide.</p>
