@@ -21,6 +21,10 @@ const SiteManagerReport = mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"Project"
     },
+    constractorId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"contractor"
+    },
 
      status: {
         type: String,

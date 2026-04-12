@@ -19,7 +19,7 @@ function Userlayout() {
               <div className="line"></div>
               <ul>
                             <li>
-                          <Link to="" ><i class="fa-solid fa-house"></i> Dashboard</Link>
+                          <Link to="dash" ><i class="fa-solid fa-house"></i> Dashboard</Link>
                             </li>
                     
                             <li>
@@ -62,7 +62,7 @@ function Userlayout() {
                           <div className="line"></div>
                           <ul>
                             <li>
-                          <Link to="" ><i class="fa-solid fa-house"></i> Dashboard</Link>
+                          <Link to="dash" ><i class="fa-solid fa-house"></i> Dashboard</Link>
                             </li>
                     
                             <li>

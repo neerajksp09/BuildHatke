@@ -34,6 +34,9 @@ function SMlayout() {
               <li>
                 <Link to=""><i className="fa-solid fa-chart-area"></i> Reports</Link>
               </li>
+              <li className='text-center'>
+                <button className='btn btn-info px-3 py-2'>Log Out</button>
+              </li>
             </ul>
 
 
@@ -81,6 +84,9 @@ function SMlayout() {
                             <li>
                               <Link to=""><i className="fa-solid fa-chart-area"></i> Reports</Link>
                             </li>
+                            <li className='text-center'>
+                              <button className='btn px-3 py-2'>Log Out</button>
+                            </li>
                           </ul>
 
 
@@ -88,7 +94,7 @@ function SMlayout() {
                         </div>
                       </div>
                     </div>
-                    <h3 className="mt-2 d-none d-xxl-block " > Current Site: </h3>
+                    <h3 className="mt-2 d-none d-xxl-block " > <Link style={{ textDecoration: "none", color: "rgb(164, 91, 41)" }} to={"/"}><i class="fa-solid fa-circle-arrow-left"></i> Home Page</Link> </h3>
 
                   </div>
                   <div className="col-8  d-flex gap-2 justify-content-end ">

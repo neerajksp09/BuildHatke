@@ -9,10 +9,18 @@ smReportRouter.get('/',async(req,res)=>{
     "report":report
    })
 })
-smReportRouter.get('/:id', async (req, res) => {
+
+smReportRouter.get('/assign',async(req,res)=>{
+   const report = await SiteManagerReport.find().populate('smuid').populate('uid').populate('projectId').populate('constractorId')
+   return res.json({
+    msg:"success",
+    "report":report
+   })
+})
+smReportRouter.put('/assign/:id', async (req, res) => {
    const id = req.params.id;
 
-   const report = await SiteManagerReport.findById(id).populate('smuid').populate('uid').populate('projectId')
+   const report = await SiteManagerReport.findByIdAndUpdate(id,req.body).populate('smuid').populate('uid').populate('constractorId')
    return res.json({
       msg: "success",
       report
@@ -26,6 +34,7 @@ smReportRouter.post('/',async(req,res)=>{
    })
    
 })
+
 smReportRouter.put('/:id',async(req,res)=>{
    const id =req.params.id
    const report = await SiteManagerReport.findByIdAndUpdate(id,req.body)
@@ -44,5 +53,14 @@ smReportRouter.delete('/:id',async(req,res)=>{
    })
    
 })
+smReportRouter.get('/:id', async (req, res) => {
+   const id = req.params.id;
+
+   const report = await SiteManagerReport.findById(id).populate('smuid').populate('uid').populate('projectId')
+   return res.json({
+      msg: "success",
+      report
+   });
+});
 
 module.exports=smReportRouter

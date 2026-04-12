@@ -32,7 +32,7 @@ const user= { email, pass }
         }
 
         if (res.data.role == "user") {
-          navigate('/ulayout');
+          navigate('/ulayout/dash');
         } 
 
       } else if (res.data.msg === "user not found") {
