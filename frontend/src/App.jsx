@@ -23,6 +23,7 @@ import SMproject from './siteManager/SMproject'
 import Profile from './contractor/Profile'
 import Bids from './user/Bids'
 import SMconstructors from './siteManager/SMconstructors'
+import Assignproject from './contractor/Assignproject'
 
 function App() {
 
@@ -40,18 +41,18 @@ function App() {
 
             </Route>
             <Route path="/ulayout" element={<Userlayout />} >
-              <Route path="dash" element={<UserDash />} />
+              <Route path="" element={<UserDash />} />
               <Route path='cproject' element={<CreateProject />} />
               <Route path='myproject' element={<Myproject />} />
               <Route path='bids' element={<Bids/>} />
-
             </Route>
 
 
 
             <Route path="/conlayout" element={<Conlayout />} >
-              <Route path='condash' element={<ConDash />} />
-              <Route path='profile' element={<Profile />} />
+              <Route path="" element={<ConDash />} />
+                  <Route path='assignproject' element={<Assignproject/>} />
+              <Route path='profile' element={<Profile/>}/>
             </Route>
             <Route path="/sitemanagerlogin/" element={<SiteManagerLayout />} >
               <Route path='' element={<SMlogin />} />
