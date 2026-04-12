@@ -39,7 +39,7 @@ function App() {
 
             </Route>
             <Route path="/ulayout" element={<Userlayout />} >
-              <Route path="dash" element={<UserDash />} />
+              <Route path="" element={<UserDash />} />
               <Route path='cproject' element={<CreateProject />} />
               <Route path='myproject' element={<Myproject />} />
               <Route path='bids' element={<Bids />} />
@@ -49,7 +49,7 @@ function App() {
 
 
             <Route path="/conlayout" element={<Conlayout />} >
-              <Route path='condash' element={<ConDash />} />
+              <Route path='' element={<ConDash />} />
               <Route path='profile' element={<Profile/>}/>
             </Route>
             <Route path="/sitemanagerlogin/" element={<SiteManagerLayout />} >
