@@ -24,6 +24,11 @@ import Profile from './contractor/Profile'
 import Bids from './user/Bids'
 import SMconstructors from './siteManager/SMconstructors'
 import Assignproject from './contractor/Assignproject'
+import City from './Pages/City'
+import Proccess from './Pages/Proccess'
+import Services from './Pages/Services'
+import Testimonial from './Pages/Testimonial'
+import Emonitoring from './Pages/Emonitoring'
 
 function App() {
 
@@ -35,6 +40,12 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/city" element={<City />} />
+            <Route path="/process" element={<Proccess />} />
+            <Route path="/services" element={<Services />} />
+             <Route path="/testimonials" element={<Testimonial />} />
+              <Route path="/e-monitoring" element={<Emonitoring />} />
+
             <Route path="/conreg" element={<ConReg />} />
             <Route path="/login" element={<Login />} >
             

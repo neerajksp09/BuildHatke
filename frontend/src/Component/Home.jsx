@@ -27,8 +27,7 @@ import monitor from '../assets/monitor.png'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import { Link } from 'react-router-dom'
-// import Navbar from './Component/Navbar'
-// import Footer from './Component/Footer'
+
 
 
 function Home() {
@@ -336,7 +335,7 @@ function Home() {
                 </div>
             </div>
 
-            <button className='btn enq-btn px-4 py-2'>Enquiry</button>
+            <button className='btn enq-btn px-4 py-2 d-none d-md-block'>Enquiry</button>
 
    <Footer/>
 
