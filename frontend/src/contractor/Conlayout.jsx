@@ -66,7 +66,7 @@ export default function Conlayout() {
                               </li>
                       
                               <li>
-                              <Link to="cproject" ><i class="fa-solid fa-circle-plus"></i> My project</Link>
+                              <Link to="assignproject" ><i class="fa-solid fa-circle-plus"></i>Assignproject</Link>
                               </li>
                               <li>
                                   <Link to="myproject" ><i class="fa-solid fa-list-check"></i> Bids</Link>

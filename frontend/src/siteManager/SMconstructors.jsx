@@ -39,7 +39,7 @@ function SMconstructors() {
     }
    //Total project to be assigned
     const assiginedproject = allproject.filter((e) => e?.status == "Aproved" && e?.smuid?._id == sitemanager._id)
-    console.log("assigend project",typeof assiginedproject)
+    // console.log("assigend project",typeof assiginedproject)
     
 
     //assin project to constructor
@@ -51,7 +51,7 @@ async function sendassignproject(projectId,constractorId) {
      else{
         toast.error("Something went wrong")
      }
-     console.log("Asssign data",res.data.report)
+    //  console.log("Asssign data",res.data.report)
 } 
     //total project assigend to contractor
     

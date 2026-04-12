@@ -5,30 +5,30 @@ import axios from 'axios';
 
 function ConDash() {
 
-    const [projectData ,setProjectData]=useState([]);
+//     const [projectData ,setProjectData]=useState([]);
 
-    const getprojectData= async ()=>{
-      const res = await axios.get('http://localhost:3000/api/user/project')
-      // console.log(res);
-    if(res.data.msg=="success"){
-      setProjectData(res.data.project)
-    }
-    }
+//     const getprojectData= async ()=>{
+//       const res = await axios.get('http://localhost:3000/api/user/project')
+//       // console.log(res);
+//     if(res.data.msg=="success"){
+//       setProjectData(res.data.project)
+//     }
+//     }
 
-    const updateStatus = async (id, status) => {
-  const res = await axios.put(`http://localhost:3000/api/user/project/status/${id}`,{ status });
+//     const updateStatus = async (id, status) => {
+//   const res = await axios.put(`http://localhost:3000/api/user/project/status/${id}`,{ status });
 
-  if (res.data.msg === "updated") {
-    getprojectData(); 
-  }
-};
+//   if (res.data.msg === "updated") {
+//     getprojectData(); 
+//   }
+// };
 
 
 
-useEffect(()=>{
-  getprojectData()
-  updateStatus();
-},[])
+// useEffect(()=>{
+//   getprojectData()
+//   updateStatus();
+// },[])
   return (
    <>
 <div className="row" >

@@ -331,12 +331,21 @@ background: var(--colorgray);
     overflow-y: scroll;
 }
 .heading-form{
-    border-bottom: 5px var(--lighttheam) solid ;
+    border-bottom:5px var(--lighttheam) solid ;
     font-family: var(--heading-font);
     font-weight: bold;
     font-size:20px;
     letter-spacing:2px;
     padding-bottom:5px;
+    color: var(--hcolor);
+}
+.con-form{
+    border-bottom:2px var(--lighttheam) solid ;
+    font-family: var(--heading-font);
+    font-weight: bold;
+    font-size:20px;
+    letter-spacing:2px;
+    padding-bottom:2px;
     color: var(--hcolor);
 }
 
