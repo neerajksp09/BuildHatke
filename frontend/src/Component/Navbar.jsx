@@ -8,30 +8,35 @@ function Navbar(p) {
     <>
 
       <div className="row nav-row">
-        <div className="col-md-12 mx-auto ">
+        <div className="col-md-12 ">
           <nav class="navbar navbar-expand-lg ">
             <div class="container-fluid">
               <img src={l1} alt="" className='l1' />
-              <img src={t1} alt="" className='t1' />
+              <img src={t1} alt="" className='t1 d-none d-lg-block' />
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto  mb-2 mb-lg-0 ">
+                <ul class="navbar-nav mx-auto  mb-2 mb-lg-0 fs-6 ">
                   <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#">City</a>
+                    <div className="moving-line"></div>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Our Proccess</a>
+                    <div className="moving-line"></div>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Why Us</a>
+                    <div className="moving-line"></div>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Testimonials</a>
+                    <div className="moving-line"></div>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">E-Monitoring</a>
+                    <div className="moving-line"></div>
                   </li>
 
                 </ul>

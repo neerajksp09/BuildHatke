@@ -35,7 +35,7 @@ function Home() {
     return (
         <>
  <Navbar button={ <div class="dropdown ">
-                    <button class="btn btn-secondary  px-2 py-2  " type="submit">
+                    <button class="btn px-3 py-2  " type="submit" style={{borderRadius:"0px"}}>
                       Login <i class="fa-solid fa-arrow-right"></i>
                     </button>
                     <ul class="dropdown-menu  rounded-0 bg-dark boder-none" style={{ right: "0" }}>
