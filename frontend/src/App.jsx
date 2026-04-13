@@ -25,6 +25,15 @@ import Report from './contractor/Report'
 import Bids from './user/Bids'
 import SMconstructors from './siteManager/SMconstructors'
 import Assignproject from './contractor/Assignproject'
+<<<<<<<<< Temporary merge branch 1
+import City from './Pages/City'
+import Proccess from './Pages/Proccess'
+import Services from './Pages/Services'
+import Testimonial from './Pages/Testimonial'
+import Emonitoring from './Pages/Emonitoring'
+=========
+import UserProfile from './user/UserProfile'
+>>>>>>>>> Temporary merge branch 2
 
 function App() {
 
