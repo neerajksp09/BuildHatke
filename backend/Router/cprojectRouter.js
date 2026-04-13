@@ -1,16 +1,20 @@
 const express = require('express');
 const cProjectModal = require('../Modal/cProjectModal');
 const cprojectRouter  = express.Router();
+const upload = require('../upload');
 
 cprojectRouter.get('/', async (req,res)=>{
     const project = await cProjectModal.find().populate('uid');
     
     res.json({"msg":"success","project":project})
 })
-cprojectRouter.post('/',async (req,res)=>{
-    const project =await cProjectModal.create(req.body);
+cprojectRouter.post('/',upload.single('img'),async (req,res)=>{
+    const data = {...req.body,
+    img: req.file.filename}
+
+    const project =await cProjectModal.create(data);
     // console.log(req.body.uid);
-    res.json({"msg":"success"});
+    res.json({"msg":"success","project":project});
 })
 cprojectRouter.get('/:id',async (req,res)=>{
     const id = req.params.id

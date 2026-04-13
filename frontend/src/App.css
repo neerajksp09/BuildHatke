@@ -355,4 +355,7 @@ background: var(--colorgray);
  font-size: 1.2rem;
    
 }
+.home-slider img{
+  height:100vh !important;
+}
 /* abhishek css end */

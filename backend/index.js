@@ -14,6 +14,7 @@ mongoose.connect('mongodb://Abhishek123:Abhishek123@ac-v20dejk-shard-00-00.udera
         console.log(err);
     });
 app.use(express.json())
+app.use('/upload', express.static('upload'));
 app.use(cors())
 
 

@@ -1,12 +1,24 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 
 export default function Conlayout() {
+  const[con ,setcon]=useState('')
     const navigate = useNavigate();
     const logout = ()=>{
         localStorage.removeItem("userId")
-        navigate('/login')
+        navigate('/conreg')
     }
+      const getcondata = async()=>{
+            const res = await axios.get(`http://localhost:3000/api/con/reg/${localStorage.getItem('conId')}`)
+            // console.log(res);
+            if(res.data.msg=="success"){
+                setcon(res.data.con);
+            }
+        }
+        useEffect(()=>{
+getcondata()
+        },[])
   return (
    <>
   <div className="row">
@@ -55,7 +67,8 @@ export default function Conlayout() {
                           
                           <div className="side-nav ">
                             <div className='d-flex  '>
-                              <img src="/src/assets/logo.jpeg" alt="" className='img-fluid  m-3' />
+                                          <img src={`http://localhost:3000/upload/${con.img}`} alt="" height={100} className='rounded-circle img-fluid'/>
+
                               <h2 className='  text-white mt-4'>BuildHatke</h2>
                               <button type="button" class="btn-close mt-4 p-2 fs-4   ms-auto me-4" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>
@@ -69,7 +82,7 @@ export default function Conlayout() {
                               <Link to="assignproject" ><i class="fa-solid fa-circle-plus"></i>Assignproject</Link>
                               </li>
                               <li>
-                                  <Link to="myproject" ><i class="fa-solid fa-list-check"></i> Bids</Link>
+                                  <Link to="report" ><i class="fa-solid fa-list-check"></i>Report</Link>
                               </li>
                               <li>
                                      <Link to="profile" ><i class="fa-solid fa-arrow-right-arrow-left"></i>Profile</Link>
@@ -93,9 +106,9 @@ export default function Conlayout() {
                       </div>
                       <div className="hl"></div>
                       <div className="pic">
-                        <img src="/src/assets/cos2.png" alt="" className='img-fluid' />
+                                          <img src={`http://localhost:3000/upload/${con.img}`} alt=""  className='rounded-circle img-fluid'/>
                       </div>
-                      <h5 className="mt-3 me-3" >Ashutosh</h5>
+                      <h5 className="mt-3 me-3" >{con.name}</h5>
                     </div>
                   </div>
                   </div>

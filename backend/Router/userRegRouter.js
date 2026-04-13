@@ -2,6 +2,7 @@ const express = require('express');
 const userRegRouter = express.Router();
 const userRegModal= require('../Modal/userRegModal');
 const contractorModal = require('../Modal/contractorModal');
+const upload = require('../upload');
 
 userRegRouter.get('/',async (req,res)=>{
     const user = await userRegModal.find();
@@ -19,10 +20,11 @@ userRegRouter.get('/:id',async (req,res)=>{
  const user = await userRegModal.findById(id);
 res.json({ "msg": "success", "user": user });
 })
-userRegRouter.put('/:id',async (req,res)=>{
-    const user = req.body;
+userRegRouter.put('/:id',upload.single('img'),async (req,res)=>{
+    const data = {...req.body,
+    img: req.file.filename}
     const id = req.params.id;
-    await userRegModal.findByIdAndUpdate(id,user);
+  const user =  await userRegModal.findByIdAndUpdate(id,data);
     res.json({ msg: "success", user: user });
 })
 userRegRouter.delete('/:id',async (req,res)=>{

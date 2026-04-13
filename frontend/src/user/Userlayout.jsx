@@ -1,12 +1,24 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 
 function Userlayout() {
+  const[userdata,setUserdata]=useState('');
     const navigate = useNavigate();
     const logout = ()=>{
         localStorage.removeItem("userId")
         navigate('/login')
     }
+      const getuserdata = async ()=>{
+        const res = await axios.get(`http://localhost:3000/api/reg/${localStorage.getItem('userId')}`)
+        if(res.data.msg== "success"){
+          setUserdata(res.data.user)
+        }
+      }
+      useEffect(()=>{
+getuserdata();
+      },[])
+
   return (
    <>
   <div className="row">
@@ -19,7 +31,7 @@ function Userlayout() {
               <div className="line"></div>
               <ul>
                             <li>
-                          <Link to="dash" ><i class="fa-solid fa-house"></i> Dashboard</Link>
+                          <Link to="" ><i class="fa-solid fa-house"></i> Dashboard</Link>
                             </li>
                     
                             <li>
@@ -62,7 +74,7 @@ function Userlayout() {
                           <div className="line"></div>
                           <ul>
                             <li>
-                          <Link to="dash" ><i class="fa-solid fa-house"></i> Dashboard</Link>
+                          <Link to="" ><i class="fa-solid fa-house"></i> Dashboard</Link>
                             </li>
                     
                             <li>
@@ -73,6 +85,9 @@ function Userlayout() {
                             </li>
                             <li>
                                    <Link to="bids"><i class="fa-solid fa-arrow-right-arrow-left"></i> Bids</Link>
+                            </li>
+                             <li>
+                                   <Link to="profile"><i class="fa-solid fa-arrow-right-arrow-left"></i> Profile</Link>
                             </li>
                             <li>
                             <button className='' onClick={logout}><i class="fa-solid fa-logout"></i>Logout</button>
@@ -93,9 +108,9 @@ function Userlayout() {
                     </div>
                     <div className="hl"></div>
                     <div className="pic">
-                      <img src="/src/assets/cos2.png" alt="" className='img-fluid' />
+                      <img src={`http://localhost:3000/upload/${userdata.img}`} alt="" className='img-fluid' />
                     </div>
-                    <h5 className="mt-3 me-3" >Ashutosh</h5>
+                    <h5 className="mt-3 me-3" >{userdata.name}</h5>
                   </div>
                 </div>
                 </div>
