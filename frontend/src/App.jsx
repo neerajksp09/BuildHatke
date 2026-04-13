@@ -25,7 +25,6 @@ import Report from './contractor/Report'
 import Bids from './user/Bids'
 import SMconstructors from './siteManager/SMconstructors'
 import Assignproject from './contractor/Assignproject'
-import UserProfile from './user/UserProfile'
 
 function App() {
 
@@ -37,6 +36,12 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/city" element={<City/>} />
+            <Route path="/process" element={<Proccess />} />
+            <Route path="/services" element={<Services />} />
+             <Route path="/testimonials" element={<Testimonial />} />
+              <Route path="/e-monitoring" element={<Emonitoring />} />
+
             <Route path="/conreg" element={<ConReg />} />
             <Route path="/login" element={<Login />} >
             
