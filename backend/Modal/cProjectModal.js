@@ -66,6 +66,8 @@ const projectSchema = mongoose.Schema({
   status: {
     type: String,
     default: "pending"
+  },img:{
+    type:String
   }
 
 }, { timestamps: true });

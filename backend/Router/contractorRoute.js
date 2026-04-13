@@ -1,9 +1,17 @@
 const express= require('express');
 const contractorModal = require('../Modal/contractorModal');
 const contractorRoute = express.Router();
+const upload = require('../upload');
 
 contractorRoute.post('/',async (req,res)=>{
     const con = await contractorModal.create(req.body);
+    res.json({"msg":"success","con":con})
+})
+contractorRoute.put('/:id',upload.single('img'),async (req,res)=>{
+    const id= req.params.id
+    const data = {...req.body,
+    img: req.file.filename}
+    const con = await contractorModal.findByIdAndUpdate(id,data);
     res.json({"msg":"success","con":con})
 })
 contractorRoute.get('/',async (req,res)=>{

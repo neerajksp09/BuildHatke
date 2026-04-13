@@ -64,7 +64,10 @@ getreport();
   <thead>
     <tr>
       <th scope="col">Sr No</th>
+
+       <th scope="col">Refrence</th>
        <th scope="col">location</th>
+
       <th scope="col">plotsize</th>
       <th scope="col">budget</th>
       <th scope="col">timeline</th>
@@ -81,6 +84,7 @@ getreport();
     projectData.map((e,i)=>(
         <tr key={i}>
       <th scope="row" >{i+1}</th>
+      <td><img src={`http://localhost:3000/upload/${e.img}`} height={50} alt="" /></td>
       <td>{e.location}</td>
       <td>{e.plotsize}</td>
       <td>{e.budget}</td>

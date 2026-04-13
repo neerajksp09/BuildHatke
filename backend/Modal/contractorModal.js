@@ -39,6 +39,9 @@ const contractorSchema=  mongoose.Schema({
     role:{
         type:String,
         default:"Contractor"
+    },
+    img:{
+        type:String
     }
 })
 

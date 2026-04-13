@@ -55,7 +55,7 @@ const [solar,setSolar]=useState('');
 const [rainwater,setRainwater]=useState('');
 const [lift,setLift]=useState('');
 const [vastu,setVastu]=useState('');
-
+const [img, setImg] = useState(null);
 const [specialreq,setSpecialReq]=useState('');
 
 
@@ -65,25 +65,58 @@ const projectcode = async (e)=>{
 
   const uid = localStorage.getItem("userId");
 
-  const project = {
-    uid,
+const formData = new FormData();
 
-    location, plotsize, plotface, plottype, budget, timeline, sdate,
+// image
+formData.append("img", img);
 
-    tofhome, floors, bedrooms, bathrooms, kitchen, livingRoom, diningRoom, addroom,
+// project fields
+formData.append("uid", uid);
 
-    parking, balcony, garden, outdoor, basement, terrace,
+formData.append("location", location);
+formData.append("plotsize", plotsize);
+formData.append("plotface", plotface);
+formData.append("plottype", plottype);
+formData.append("budget", budget);
+formData.append("timeline", timeline);
+formData.append("sdate", sdate);
 
-    material, cementType, steelQuality, tiles, doors,
+formData.append("tofhome", tofhome);
+formData.append("floors", floors);
+formData.append("bedrooms", bedrooms);
+formData.append("bathrooms", bathrooms);
+formData.append("kitchen", kitchen);
+formData.append("livingRoom", livingRoom);
+formData.append("diningRoom", diningRoom);
+formData.append("addroom", addroom);
 
-    designStyle, colorP, interiorstyle,
+formData.append("parking", parking);
+formData.append("balcony", balcony);
+formData.append("garden", garden);
+formData.append("outdoor", outdoor);
+formData.append("basement", basement);
+formData.append("terrace", terrace);
 
-    smartHome, cctv, solar, rainwater, lift, vastu,
+formData.append("material", material);
+formData.append("cementType", cementType);
+formData.append("steelQuality", steelQuality);
+formData.append("tiles", tiles);
+formData.append("doors", doors);
 
-    specialreq
-  };
+formData.append("designStyle", designStyle);
+formData.append("colorP", colorP);
+formData.append("interiorstyle", interiorstyle);
 
-  const res = await axios.post("http://localhost:3000/api/user/project", project);
+formData.append("smartHome", smartHome);
+formData.append("cctv", cctv);
+formData.append("solar", solar);
+formData.append("rainwater", rainwater);
+formData.append("lift", lift);
+formData.append("vastu", vastu);
+
+formData.append("specialreq", specialreq);
+
+  const res = await axios.post("http://localhost:3000/api/user/project", formData);
 
   if(res.data.msg==="success"){
     toast.success("Project Created 🚀");
@@ -167,7 +200,7 @@ const prevStep = () => {
 
 </div>
 
-<form className='w-100' onSubmit={projectcode}>
+<form className='w-100' onSubmit={projectcode} encType='multipart/form-data'>
 
 
 {step ===1 && (
@@ -359,7 +392,7 @@ const prevStep = () => {
 </div>
 <div className="col-md-6 mt-2">
     <label>Refrence your design</label>
-  <input type="file"  className='form-control '/>
+  <input type="file"  className='form-control ' name='img'  onChange={(e) => setImg(e.target.files[0])}/>
 </div>
 
   </div>
@@ -745,6 +778,7 @@ const prevStep = () => {
       <div className="col-md-6">
         <div className="card p-3 mb-3">
           <h5>House Config</h5>
+          <p><b>Refrence:</b><img src={`http://localhost:3000/upload/${img}`} alt="" /></p>
           <p><b>Type:</b> {tofhome}</p>
           <p><b>Floors:</b> {floors}</p>
           <p><b>Bedrooms:</b> {bedrooms}</p>
