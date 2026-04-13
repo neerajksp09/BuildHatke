@@ -1,7 +1,13 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 
 function SMlayout() {
+  const navigate =useNavigate()
+  const logout =()=>{
+    localStorage.removeItem('siteManagerId')
+    navigate("/sitemanagerlogin")
+  }
+  
   return (
     <>
       <div className="row">
@@ -34,8 +40,8 @@ function SMlayout() {
               <li>
                 <Link to=""><i className="fa-solid fa-chart-area"></i> Reports</Link>
               </li>
-              <li className='text-center'>
-                <button className='btn btn-info px-3 py-2'>Log Out</button>
+              <li className=''>
+                <button className='btn px-3 py-2 rounded-2 text-white' onClick={logout}>Log Out</button>
               </li>
             </ul>
 
@@ -84,8 +90,9 @@ function SMlayout() {
                             <li>
                               <Link to=""><i className="fa-solid fa-chart-area"></i> Reports</Link>
                             </li>
-                            <li className='text-center'>
-                              <button className='btn px-3 py-2'>Log Out</button>
+
+                            <li className=''>
+                              <button className='btn px-3 py-2 rounded-2 text-white' onClick={logout}>Log Out</button>
                             </li>
                           </ul>
 

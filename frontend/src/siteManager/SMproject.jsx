@@ -76,13 +76,11 @@ function SMproject() {
 
 
 
-    const myReport = yourreport.filter((item) => {
-        return item.smuid._id == localStorage.getItem('siteManagerId') &&
-            item.projectId?._id == selecteddata?._id
-
-    })
+   const myReport = yourreport.filter((item) => {
+    return item.smuid._id == localStorage.getItem('siteManagerId')
+})
     //aproved report length
-   const filterapprovedreport=  myReport.filter((i)=>i.status=="Aproved");
+  const filterapprovedreport = myReport.filter((i) => i.status === "Aproved");
 
    console.log("filter report",filterapprovedreport.length)
 

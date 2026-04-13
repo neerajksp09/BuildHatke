@@ -78,7 +78,7 @@ async function logcode(e) {
     let form;
     if (islogin) {
         form = (
-            <div className="row mt-5">
+            <div className="row">
                 <div className="col-sm-9 mx-auto px-2 ">
                     <h2 className='my-5 text-center'>Login</h2>
                     <h3>Welcome Back to BuildHatke !</h3>
@@ -219,14 +219,14 @@ async function logcode(e) {
                 <div className="col-md-6 home-slider p-0">
 
 
-                    <div id="carouselExampleCaptions" class="carousel slide " data-bs-ride="false">
+                    <div id="carouselExampleCaptions" class="carousel slide " data-bs-ride="carousel">
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
                             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                         </div>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
+                            <div class="carousel-item ">
                                 <img src="/src/assets/home1.jpg" class="d-block w-100  img-fluid" alt="..." />
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>First slide label</h5>
@@ -240,7 +240,7 @@ async function logcode(e) {
                                     <p>Some representative placeholder content for the second slide.</p>
                                 </div>
                             </div>
-                            <div class="carousel-item">
+                            <div class="carousel-item active">
                                 <img src="/src/assets/home3.jpg" class="d-block w-100 img-fluid" alt="..." />
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>Third slide label</h5>

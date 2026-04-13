@@ -12,6 +12,7 @@
 }
 .SMlogin-form{
     background-color: var(--colorgray);
+    height: 87vh;
 }
 
 .SMlogin-form h2{
@@ -110,6 +111,14 @@
  text-decoration: none;
  color: white;
  font-size: 1.2rem;
+   
+}
+.side-nav   button{
+  background-color: var(--orange);
+   
+}
+.side-nav button:hover{
+  background-color: var(--orange);
    
 }
 .nav-row-2{
