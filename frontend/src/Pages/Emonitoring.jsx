@@ -15,10 +15,10 @@ function Emonitoring() {
         </button>
         <ul class="dropdown-menu  rounded-0 bg-dark boder-none" style={{ right: "0" }}>
 
-          <li><Link to="Login" className='btn btn-dark p-2 rounded-0 dropdown-item' >Login</Link></li>
-          <li><Link to="conreg" class="btn btn-dark p-2 rounded-0  dropdown-item" >Become a Contractor</Link></li>
+          <li><Link to="/Login" className='btn btn-dark p-2 rounded-0 dropdown-item' >Login</Link></li>
+          <li><Link to="/conreg" class="btn btn-dark p-2 rounded-0  dropdown-item" >Become a Contractor</Link></li>
 
-          <li><Link to={"sitemanagerlogin"} class="btn btn-dark p-2 rounded-0  dropdown-item" >Site Manager</Link></li>
+          <li><Link to={"/sitemanagerlogin"} class="btn btn-dark p-2 rounded-0  dropdown-item" >Site Manager</Link></li>
         </ul>
       </div>} />
       <div className="row">

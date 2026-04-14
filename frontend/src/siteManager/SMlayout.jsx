@@ -1,12 +1,24 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 
 function SMlayout() {
+   const [smdata,setSmdata]=useState('')
   const navigate =useNavigate()
   const logout =()=>{
     localStorage.removeItem('siteManagerId')
     navigate("/sitemanagerlogin")
   }
+   const sitemanagerData= async ()=>{
+          const res = await axios.get(`http://localhost:3000/api/sitemanager/reg/${localStorage.getItem('siteManagerId')}`)
+          if(res.data.msg=="success"){
+             setSmdata(res.data.user)
+          }
+
+      }
+    useEffect(()=>{
+    sitemanagerData()
+    },[])
   
   return (
     <>
@@ -29,10 +41,10 @@ function SMlayout() {
                 <Link to={"constructors"} ><i className="fa-solid fa-helmet-safety"></i> Constructors</Link>
               </li>
               <li>
-                <Link to={""}><i className="fa-brands fa-bitbucket"></i> Materials</Link>
+                <Link to={"material"}><i className="fa-brands fa-bitbucket"></i> Materials</Link>
               </li>
               <li>
-                <Link to=""><i className="fa-solid fa-calendar-check"></i> Tasks</Link>
+                <Link to={"profile"}><i className="fa-solid fa-calendar-check"></i> Profile</Link>
               </li>
               <li>
                 <Link to=""><i className="fa-solid fa-hand-holding-dollar"></i> Expenses</Link>
@@ -79,11 +91,11 @@ function SMlayout() {
                               <Link to={"constructors"} ><i className="fa-solid fa-helmet-safety"></i> Constructors</Link>
                             </li>
                             <li>
-                              <Link to={""}><i className="fa-brands fa-bitbucket"></i> Materials</Link>
+                              <Link to={"material"}><i className="fa-brands fa-bitbucket"></i> Materials</Link>
                             </li>
                             <li>
-                              <Link to=""><i className="fa-solid fa-calendar-check"></i> Tasks</Link>
-                            </li>
+                <Link to={"profile"}><i className="fa-solid fa-calendar-check"></i> Profile</Link>
+              </li>
                             <li>
                               <Link to=""><i className="fa-solid fa-hand-holding-dollar"></i> Expenses</Link>
                             </li>
@@ -110,9 +122,9 @@ function SMlayout() {
                     </div>
                     <div className="hl"></div>
                     <div className="pic">
-                      <img src="/src/assets/cos2.png" alt="" className='img-fluid' />
+                      <img src={`http://localhost:3000/upload/${smdata.img}`} alt="" className='img-fluid' />
                     </div>
-                    <h5 className="mt-3 me-3" >Ashutosh</h5>
+                    <h5 className="mt-3 me-3" >{smdata.name}</h5>
                   </div>
                 </div>
               </div>
