@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 function UserProfile() {
@@ -10,7 +11,9 @@ function UserProfile() {
     const [email, setEmail] = useState('');
     const [img,setImg] = useState('');
     const [editId,setEditId] = useState(null);
-   
+   const navigate = useNavigate();
+
+
   const getuserdata = async ()=>{
     const res = await axios.get(`http://localhost:3000/api/reg/${localStorage.getItem('userId')}`)
     if(res.data.msg== "success"){
@@ -32,8 +35,15 @@ function UserProfile() {
 if(editId){
   const res = await  axios.put(`http://localhost:3000/api/reg/${editId}`,formadata)
  if(res.data.msg =="success"){
-   toast.success("User Updated Successfully");
+   toast.success("Contractor Updated Successfully");
             setEditId(null);
+            setName('');
+            setNumber('')
+            setCity("")
+            setEmail('')
+            // setImg("");
+            navigate('/ulayout/profile');
+            
  }
  else {
             toast.error("Something went wrong");
@@ -128,7 +138,7 @@ getuserdata()
 
   <form onSubmit={updatecode}>
 
-    {/* Profile Image Preview */}
+   
     <div className="text-center mb-4">
       <img
         src={img ? URL.createObjectURL(img) : `http://localhost:3000/upload/${userdata.img}`}
