@@ -1,6 +1,7 @@
 const express =require('express');
 const siteManagerModel = require('../Modal/siteManagerModel');
 const siteManagerRouter=express.Router()
+const upload =require('../upload')
 
 siteManagerRouter.get('/',async(req,res)=>{
    const user = await siteManagerModel.find()
@@ -10,8 +11,20 @@ siteManagerRouter.get('/',async(req,res)=>{
    })
 })
 siteManagerRouter.get('/:id',async(req,res)=>{
+   
    const id = req.params.id
    const user = await siteManagerModel.findById(id)
+   return res.json({
+    msg:"success",
+    "user":user
+   })
+})
+siteManagerRouter.put('/:id',upload.single('img'), async(req,res)=>{
+   const data = {...req.body,
+      img:req.file.filename
+   }
+   const id = req.params.id
+   const user = await siteManagerModel.findByIdAndUpdate(id,data)
    return res.json({
     msg:"success",
     "user":user

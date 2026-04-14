@@ -57,6 +57,9 @@ const siteManagerSchema= mongoose.Schema({
     status:{
         type:String,
         
+    },
+    img:{
+     type:String
     }
 
 },{
