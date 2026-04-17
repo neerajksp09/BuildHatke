@@ -38,6 +38,12 @@ function Material() {
 
   }
 
+const getmaterial =async()=>{
+    const res =await axios.post(`http://localhost:3000/api/material/`)
+    res.data.material.filter((e)=>e)
+}
+
+
 
   return (
     <>
