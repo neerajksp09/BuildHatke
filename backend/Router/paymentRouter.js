@@ -3,7 +3,7 @@ const paymentModel = require('../Modal/paymentModel');
 const upload = require('../upload');
 const paymentRouter =express.Router()
 paymentRouter.get('/',async(req,res)=>{
-    const payment =await paymentModel.find().populate('smid');
+    const payment =await paymentModel.find().populate('reportdetails');
     res.json({"msg":"success",payment})
 })
 paymentRouter.get('/:id',async(req,res)=>{
@@ -14,6 +14,7 @@ paymentRouter.get('/:id',async(req,res)=>{
 paymentRouter.post('/',upload.single('qrimage'),async(req,res)=>{
     const data = {...req.body,
         qrimage:req.file.filename}
+    
     const payment =await paymentModel.create(data);
     res.json({"msg":"success",payment})
     

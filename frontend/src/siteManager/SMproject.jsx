@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 
 function SMproject() {
     const [userdata, setUserdata] = useState([]);
+    const [proid, setProid] = useState("");
     const [yourreport, setYourreport] = useState([])
     const [sitemanager, setSitemanager] = useState('')
     const [budget, setBudget] = useState('')
@@ -12,6 +13,7 @@ function SMproject() {
     const [selecteddata, setSelecteddata] = useState([])
     const [qrimage,setQrimage]=useState('')
     const [takepayment,setTakepayment]=useState('')
+    const [paylength,setpaylength]=useState('')
 
     const getuserdata = async () => {
         const res = await axios.get('http://localhost:3000/api/user/project')
@@ -74,23 +76,26 @@ function SMproject() {
     }
 
 
-
-
-
-
     const myReport = yourreport.filter((item) => {
-        return item.smuid._id == localStorage.getItem('siteManagerId')
+        console.log("Hello");
+        return (item.smuid._id == localStorage.getItem('siteManagerId') && item.projectId._id == proid)
     })
     //aproved report length
     const filterapprovedreport = myReport.filter((i) => i.status === "Aproved");
 
-    console.log("filter report", filterapprovedreport.length)
+    console.log("filter report", filterapprovedreport)
+
+
+
+
 
 
     async function handleRow(id) {
         const filterdata = userdata.find((item) => item._id == id)
         setSelecteddata(filterdata)
-        console.log("My my filter report", myReport)
+        console.log(filterdata);
+        setProid(filterdata._id);
+        // console.log("My my filter report", filterdata)
 
     }
 
@@ -121,26 +126,32 @@ function SMproject() {
     }
 
 
-  const smid =localStorage.getItem('siteManagerId') 
+ 
 
 
-    async function paymentcode(e) {
+    async function paymentcode(e,u) {
         e.preventDefault()
         // const data ={nowpayment,qrimage}
+
+        
         const formdata = new FormData();
         formdata.append('takepayment',takepayment)
         formdata.append('qrimage',qrimage)
-        formdata.append('smid',smid)
+        formdata.append('reportdetails',u)
+     
+       
+      
 
         const res = await axios.post('http://localhost:3000/api/payment',formdata)
-        if((await res).data.msg=="success"){
+        if( res.data.msg=="success"){
             toast.success("Budget Send SuccessFully")
+            setpaylength(res.data.payment.length)
         }
-        
+        console.log(u)
     }
 
 
-
+  console.log('paylength',paylength)
 
 
     useEffect(() => {
@@ -167,7 +178,7 @@ function SMproject() {
                         <div className="col-md-4 p-3">
                             <div className="card p-3  h-100 d-flex flex-column">
                                 <h4> Under Request Projects</h4>
-                                <h1 className='text-warning'>{length}</h1>
+                                <h1 className='text-warning'>{yourreport.filter((e)=>e.projectId.status=="in-progress").length}</h1>
 
                             </div>
                         </div>
@@ -268,7 +279,7 @@ function SMproject() {
                                                     <li>Basement: <strong className="text-warning">{selecteddata?.basement}</strong></li>
                                                     <li>Tarrace : <strong className="text-warning">{selecteddata?.terrace}</strong></li>
                                                     <li>Image : <img src={`http://localhost:3000/upload/${selecteddata?.img}`} height={50} alt="Nahi hai" /></li>
-                                                    {console.log(selecteddata?.img)}
+                                                   
 
                                                 </ul>
                                             </div>
@@ -381,7 +392,7 @@ function SMproject() {
                                 <div className="col-md-12 p-4">
                                     <h3 className='text-center py-2'>Take Payment</h3>
                                     <div className="card table-responsive p-3">
-                                       <form action="" onSubmit={paymentcode}>
+                                       <form action="">
                                          <table class="table">
                                             <thead className='text-center'>
                                                 <tr>
@@ -407,7 +418,7 @@ function SMproject() {
                                                             <td><input type="text" className='form-control' value={takepayment} onChange={(e)=>setTakepayment(e.target.value)}/></td>
                                                             <td><input type="file" onChange={(e)=>setQrimage(e.target.files[0])} className='form-control' /></td>
                                                             <td>Payment Left</td>
-                                                            <td><button className='btn btn-success' type='submit'>Take Payment </button></td>
+                                                            <td><button className='btn btn-success' type='submit' onClick={(e)=>paymentcode(e,u._id)} disabled={paylength>1}>Take Payment </button></td>
                                                         </tr>
                                                     ))
                                                 }

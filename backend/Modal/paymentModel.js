@@ -7,9 +7,9 @@ const paymentSchema = mongoose.Schema({
     qrimage:{
         type:String
     },
-    smid:{
+    reportdetails:{
       type:mongoose.Schema.Types.ObjectId,
-      ref:"SiteManager"
+      ref:"SiteManagerReport"
     }
 })
 module.exports=mongoose.model("payment",paymentSchema)
