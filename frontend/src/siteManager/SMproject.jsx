@@ -247,6 +247,8 @@ function SMproject() {
                                                     <li>Out Door : <strong className="text-warning">{selecteddata?.outdoor}</strong></li>
                                                     <li>Basement: <strong className="text-warning">{selecteddata?.basement}</strong></li>
                                                     <li>Tarrace : <strong className="text-warning">{selecteddata?.terrace}</strong></li>
+                                                    <li>Image : <img src={`http://localhost:3000/upload/${selecteddata?.img}`} height={50} alt="Nahi hai"  /></li>
+                                                    {console.log(selecteddata?.img)}
 
                                                 </ul>
                                             </div>

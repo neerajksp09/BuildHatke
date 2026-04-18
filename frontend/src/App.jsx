@@ -30,8 +30,9 @@ import Proccess from './Pages/Proccess'
 import Services from './Pages/Services'
 import Testimonial from './Pages/Testimonial'
 import Emonitoring from './Pages/Emonitoring'
-
 import UserProfile from './user/UserProfile'
+import SMprofile from './siteManager/SMprofile'
+import Material from './siteManager/Material'
 
 
 function App() {
@@ -79,6 +80,8 @@ function App() {
               <Route path='dash' element={<SiteManagerDash />} />
               <Route path='project' element={<SMproject />} />
               <Route path='constructors' element={<SMconstructors />} />
+               <Route path='profile' element={<SMprofile />} />
+               <Route path='material' element={<Material />} />
 
             </Route>
            
