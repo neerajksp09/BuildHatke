@@ -4,13 +4,17 @@ import { toast } from 'react-toastify';
 
 function SMproject() {
     const [userdata, setUserdata] = useState([]);
+    const [proid, setProid] = useState("");
     const [yourreport, setYourreport] = useState([])
     const [sitemanager, setSitemanager] = useState('')
     const [budget, setBudget] = useState('')
     const [timeline, setTimeline] = useState('')
     const [length, setLength] = useState('')
     const [selecteddata, setSelecteddata] = useState([])
-   
+    const [qrimage,setQrimage]=useState('')
+    const [takepayment,setTakepayment]=useState('')
+    const [paylength,setpaylength]=useState('')
+
     const getuserdata = async () => {
         const res = await axios.get('http://localhost:3000/api/user/project')
         if (res.data.msg == "success") {
@@ -20,7 +24,7 @@ function SMproject() {
         }
     }
     var totalproject = userdata.length
-  
+
 
     const sitemanagerdata = async () => {
         const res = await axios.get(`http://localhost:3000/api/sitemanager/reg/${localStorage.getItem('siteManagerId')}`)
@@ -44,51 +48,54 @@ function SMproject() {
 
         }
 
-      
-   
-         const res = await axios.post('http://localhost:3000/api/sitemanager/report', report)
+
+
+        const res = await axios.post('http://localhost:3000/api/sitemanager/report', report)
         if (res.data.msg == "success") {
             toast.success('Apply Success')
             console.log("send report", res.data.report)
-            getyourreport(); 
+            getyourreport();
         }
         else {
             toast.error('Something Went Wrong')
         }
-       }
-   
+    }
 
-        //    your report is get
+
+    //    your report is get
     const getyourreport = async () => {
         const res = await axios.get(`http://localhost:3000/api/sitemanager/report`);
         if (res.data.msg == "success") {
             setYourreport(res.data.report)
             setLength(res.data.report.length);
             getuserdata();
-            
+
 
         }
-        
+
     }
 
 
-   
-
-
-
-   const myReport = yourreport.filter((item) => {
-    return item.smuid._id == localStorage.getItem('siteManagerId')
-})
+    const myReport = yourreport.filter((item) => {
+        console.log("Hello");
+        return (item.smuid._id == localStorage.getItem('siteManagerId') && item.projectId._id == proid)
+    })
     //aproved report length
-  const filterapprovedreport = myReport.filter((i) => i.status === "Aproved");
+    const filterapprovedreport = myReport.filter((i) => i.status === "Aproved");
 
-   console.log("filter report",filterapprovedreport.length)
+    console.log("filter report", filterapprovedreport)
+
+
+
+
 
 
     async function handleRow(id) {
         const filterdata = userdata.find((item) => item._id == id)
         setSelecteddata(filterdata)
-        console.log("My my filter report", myReport)
+        console.log(filterdata);
+        setProid(filterdata._id);
+        // console.log("My my filter report", filterdata)
 
     }
 
@@ -99,19 +106,19 @@ function SMproject() {
         if (u.status === "Aproved") {
             toast.error("you have already Aproved")
         }
-        if(u.status=="in-progress") {
+        if (u.status == "in-progress") {
             const res = await axios.put(`http://localhost:3000/api/sitemanager/report/${u._id}`, status)
             if (res.data.msg == "success") {
                 toast.success("Approved Success")
-                
-         
+
+
             }
             else {
                 toast.error("something went wrong")
             }
 
         }
-        else{
+        else {
             toast.error("You can not approved")
         }
 
@@ -119,8 +126,32 @@ function SMproject() {
     }
 
 
+ 
 
 
+    async function paymentcode(e,u) {
+        e.preventDefault()
+        // const data ={nowpayment,qrimage}
+
+        
+        const formdata = new FormData();
+        formdata.append('takepayment',takepayment)
+        formdata.append('qrimage',qrimage)
+        formdata.append('reportdetails',u)
+     
+       
+      
+
+        const res = await axios.post('http://localhost:3000/api/payment',formdata)
+        if( res.data.msg=="success"){
+            toast.success("Budget Send SuccessFully")
+            setpaylength(res.data.payment.length)
+        }
+        console.log(u)
+    }
+
+
+  console.log('paylength',paylength)
 
 
     useEffect(() => {
@@ -136,29 +167,29 @@ function SMproject() {
             <div className="row">
                 <div className="col-md-11 mx-auto my-4 ">
 
-                   <div className="row project-card-row">
-                    <div className="col-md-4 p-3">
-                        <div className="card p-3  h-100 d-flex flex-column">
-                              <h4> Total Projects</h4>
-                              <h1 className='text-danger'>{totalproject}</h1>
+                    <div className="row project-card-row">
+                        <div className="col-md-4 p-3">
+                            <div className="card p-3  h-100 d-flex flex-column">
+                                <h4> Total Projects</h4>
+                                <h1 className='text-danger'>{totalproject}</h1>
 
+                            </div>
+                        </div>
+                        <div className="col-md-4 p-3">
+                            <div className="card p-3  h-100 d-flex flex-column">
+                                <h4> Under Request Projects</h4>
+                                <h1 className='text-warning'>{yourreport.filter((e)=>e.projectId.status=="in-progress").length}</h1>
+
+                            </div>
+                        </div>
+                        <div className="col-md-4 p-3">
+                            <div className="card p-3 h-100 d-flex flex-column">
+                                <h4 > Aprroved Project</h4>
+                                <h1 className='text-success'>{filterapprovedreport.length}</h1>
+
+                            </div>
                         </div>
                     </div>
-                    <div className="col-md-4 p-3">
-                        <div className="card p-3  h-100 d-flex flex-column">
-                              <h4> Under Request Projects</h4>
-                              <h1 className='text-warning'>{length}</h1>
-
-                        </div>
-                    </div>
-                    <div className="col-md-4 p-3">
-                        <div className="card p-3 h-100 d-flex flex-column">
-                              <h4 > Aprroved Project</h4>
-                              <h1 className='text-success'>{filterapprovedreport.length}</h1>
-
-                        </div>
-                    </div>
-                   </div>
 
                     <div className="table-reponsive mt-4">
                         <table className="table table-bordered ">
@@ -175,9 +206,9 @@ function SMproject() {
                             </thead>
                             <tbody >
                                 {
-                                    userdata.map((e,i) => (
+                                    userdata.map((e, i) => (
                                         <tr className='text-center' key={i}>
-                                            <td>{i+1}</td>
+                                            <td>{i + 1}</td>
                                             <td>{e.uid.name}</td>
                                             <td>{e.uid.number}</td>
                                             <td>{e.location}</td>
@@ -187,7 +218,7 @@ function SMproject() {
                                                     View Project
                                                 </button>
                                             </td>
-                                         
+
                                         </tr>
                                     ))
                                 }
@@ -247,8 +278,8 @@ function SMproject() {
                                                     <li>Out Door : <strong className="text-warning">{selecteddata?.outdoor}</strong></li>
                                                     <li>Basement: <strong className="text-warning">{selecteddata?.basement}</strong></li>
                                                     <li>Tarrace : <strong className="text-warning">{selecteddata?.terrace}</strong></li>
-                                                    <li>Image : <img src={`http://localhost:3000/upload/${selecteddata?.img}`} height={50} alt="Nahi hai"  /></li>
-                                                    {console.log(selecteddata?.img)}
+                                                    <li>Image : <img src={`http://localhost:3000/upload/${selecteddata?.img}`} height={50} alt="Nahi hai" /></li>
+                                                   
 
                                                 </ul>
                                             </div>
@@ -306,7 +337,7 @@ function SMproject() {
                                             <label htmlFor="" className='label-control'>TimeLine</label>
                                             <input type="text" className='form-control' value={timeline} onChange={(e) => { setTimeline(e.target.value) }} />
 
-                                            <button type="submit" className="btn btn-danger w-100 mt-4" data-bs-dismiss="modal" disabled={myReport?.length>0} >Apply</button>
+                                            <button type="submit" className="btn btn-danger w-100 mt-4" data-bs-dismiss="modal" disabled={myReport?.length > 0} >Apply</button>
 
 
 
@@ -337,7 +368,7 @@ function SMproject() {
                                                 {
                                                     myReport.map((u, j) => (
                                                         <tr key={j}>
-                                                            <td>{j+1}</td>
+                                                            <td>{j + 1}</td>
                                                             <td>{u.uid?.name}</td>
                                                             <td>{u.projectId?.location}</td>
                                                             <td>{u.budget}</td>
@@ -355,6 +386,51 @@ function SMproject() {
                                     </div>
                                 </div>
                             </div>
+
+                            {/* take payment */}
+                            <div className="row">
+                                <div className="col-md-12 p-4">
+                                    <h3 className='text-center py-2'>Take Payment</h3>
+                                    <div className="card table-responsive p-3">
+                                       <form action="">
+                                         <table class="table">
+                                            <thead className='text-center'>
+                                                <tr>
+                                                    <th scope="col">S.no</th>
+                                                    <th scope="col">User Name</th>
+                                                    <th scope="col">Ploat location</th>
+                                                    <th scope="col">Total Payment</th>
+                                                    <th scope="col">Payment to be taken</th>
+                                                    <th scope="col">Upload Qr</th>
+                                                    <th scope="col">Payment to be Left</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                         
+                                             <tbody className='text-center'>
+                                               {
+                                                    myReport.map((u, j) => (
+                                                        <tr key={j}>
+                                                            <td>{j + 1}</td>
+                                                            <td>{u.uid?.name}</td>
+                                                            <td>{u.projectId?.location}</td>
+                                                            <td>{u.budget}</td>
+                                                            <td><input type="text" className='form-control' value={takepayment} onChange={(e)=>setTakepayment(e.target.value)}/></td>
+                                                            <td><input type="file" onChange={(e)=>setQrimage(e.target.files[0])} className='form-control' /></td>
+                                                            <td>Payment Left</td>
+                                                            <td><button className='btn btn-success' type='submit' onClick={(e)=>paymentcode(e,u._id)} disabled={paylength>1}>Take Payment </button></td>
+                                                        </tr>
+                                                    ))
+                                                }
+                                            </tbody>
+                                      
+                                        </table>
+                                       </form>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
 
 
 
