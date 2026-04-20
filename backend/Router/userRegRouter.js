@@ -1,6 +1,7 @@
 const express = require('express');
 const userRegRouter = express.Router();
 const userRegModal= require('../Modal/userRegModal');
+const adminModal= require('../Modal/adminModal')
 const contractorModal = require('../Modal/contractorModal');
 const upload = require('../upload');
 
@@ -37,9 +38,10 @@ userRegRouter.delete('/:id',async (req,res)=>{
 // login code 
 
 userRegRouter.post("/login", async (req, res) => {
-    const { email, pass, cpass } = req.body;
+    const { email, pass} = req.body;
    
     const user = await userRegModal.findOne({ email });
+  
    
 if(user){
      if (user.pass !== pass ) {
@@ -53,9 +55,15 @@ if(user){
     
 }
 
-else{
-     return res.json({ msg: "user not found" });
+
+ const admin = await adminModal.findOne({email})
+if(admin){
+    if(admin.pass != pass){
+        return res.json({"msg":"invaild password"});
+    }
+    res.json({ msg: "success",admin,role:admin.role});
 }
+return res.json({ msg: "user not found" });
 
    
 });

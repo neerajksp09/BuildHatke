@@ -33,6 +33,8 @@ import Emonitoring from './Pages/Emonitoring'
 import UserProfile from './user/UserProfile'
 import SMprofile from './siteManager/SMprofile'
 import Material from './siteManager/Material'
+import Adlayout from './Admin/Adlayout'
+import Addash from './Admin/Addash'
 
 
 function App() {
@@ -64,6 +66,10 @@ function App() {
               <Route path='profile' element={<UserProfile/>} />
             </Route>
 
+
+<Route path='/adlayout' element={<Adlayout/>}>
+<Route path='' element={<Addash/>} />
+</Route>
 
 
             <Route path="/conlayout" element={<Conlayout />} >
