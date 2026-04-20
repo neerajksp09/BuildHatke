@@ -1,67 +1,19 @@
 const mongoose =require('mongoose')
 const materialSchema =mongoose.Schema({
-    cementName:{
+    materialName:{
         type:String,
         required:true
     },
-     cementQty:{
-        type:Number,
-        required:true
-    },
-     brickName:{
+     materialQnty:{
         type:String,
         required:true
     },
-     brickQty:{
-        type:Number,
-        required:true
-    },
-     steelName:{
-        type:String,
-        require:true
-    },
-     steelQty:{
-        type:Number,
-        required:true
-    },
-    sandName:{
+     materialPrice:{
         type:String,
         required:true
     },
-     sandQty:{
-        type:Number,
-        required:true
-    },
-    tileName:{
+     materialImage:{
         type:String,
-        required:true
-    },
-     tileQty:{
-        type:Number,
-        required:true
-    },
-    paintName:{
-        type:String,
-        required:true
-    },
-     paintQty:{
-        type:Number,
-        required:true
-    },
-    woodName:{
-        type:String,
-        required:true
-    },
-     woodQty:{
-        type:Number,
-        required:true
-    },
-    pvcpipeName:{
-        type:String,
-        required:true
-    },
-     pvcpipeQty:{
-        type:Number,
         required:true
     },
     smId:{

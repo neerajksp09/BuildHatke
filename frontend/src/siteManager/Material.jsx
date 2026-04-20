@@ -1,186 +1,190 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
-import { useParams } from "react-router-dom";
+
 
 function Material() {
-  const [cementName, setCementName] = useState('')
-  const [cementQty, setCementQty] = useState('')
-  const [brickName, setBrickName] = useState('')
-  const [brickQty, setBrickQty] = useState('')
-  const [steelName, setSteeltName] = useState('')
-  const [steelQty, setSteeltQty] = useState('')
-  const [sandName, setSandtName] = useState('')
-  const [sandQty, setSandQty] = useState('')
-  const [woodName, setWoodName] = useState('')
-  const [woodQty, setWoodtQty] = useState('')
-  const [tileName, settiletName] = useState('')
-  const [tileQty, setTiletQty] = useState('')
-  const [paintName, setPaintName] = useState('')
-  const [paintQty, setPaintQty] = useState('')
-  const [pvcpipeName, setPvcpipeName] = useState('')
-  const [pvcpipeQty, setPvcpipeQty] = useState('')
-  const { id } = useParams();
+  const [editId, setEditId] = useState(null);
+  const [materialQnty, setMaterialQnty] = useState('')
+  const [customQty, setCustomQty] = useState('')
+  const [materialName, setMaterialName] = useState('')
+  const [materialPrice, setMaterialPrice] = useState('')
+  const [materialImage, setMaterialImage] = useState('')
+  const [myMaterials, setMyMaterials] = useState([])
+  const smId = localStorage.getItem("siteManagerId");
 
-  async function materialcode(e) {
+
+const editMaterial = async (item) => {
+    setEditId(item._id)
+  
+    setMaterialName(item.materialName)
+    setMaterialQnty(item.materialQnty)
+    setMaterialPrice(item.materialPrice)
+  }
+
+
+
+  async function addmaterial(e) {
     e.preventDefault();
 
-    const smId = localStorage.getItem('siteManagerId')
-    const materialdata = {
-      cementName, cementQty, brickName, brickQty, steelName, steelQty, sandName, sandQty, woodName, woodQty, tileName, tileQty, paintName, paintQty, pvcpipeName, pvcpipeQty, smId
-    }
-    const res = await axios.post(`http://localhost:3000/api/material/`,materialdata)
-    if (res.data.msg == "success") {
-      toast.success("Material Update Success")
-      console.log(res.data.material)
+    const formdata = new FormData()
+    const finalQty = materialQnty === "other" ? customQty : materialQnty;
+    formdata.append('materialName', materialName)
+    formdata.append("materialPrice", materialPrice)
+    formdata.append("materialImage", materialImage);
+    formdata.append("materialQnty", finalQty);
+    formdata.append('smId', smId)
+
+
+    let res;
+
+    if (editId) {
+      res = await axios.put(`http://localhost:3000/api/material/${editId}`, formdata)
+      if (res.data.msg === "success") {
+        toast.success("Material Updated");
+      }
     }
 
+    else {
+
+      res = await axios.post('http://localhost:3000/api/material', formdata)
+      if (res.data.msg === "success") {
+        toast.success("Material Added")
+
+      }
+    }
+    setEditId(null);
+    setMaterialName('');
+    setMaterialPrice('');
+    setMaterialQnty('');
+    setCustomQty('');
+    setMaterialImage('');
+
+    getmaterial();
 
   }
 
-const getmaterial =async()=>{
-    const res =await axios.post(`http://localhost:3000/api/material/`)
-    res.data.material.filter((e)=>e)
-}
+  const getmaterial = async () => {
+    const res = await axios.get(`http://localhost:3000/api/material/${smId}`)
+    if (res.data.msg === 'success') {
+      setMyMaterials(res.data.material)
 
+    }
+  }
+  const deleteMaterial = async (id) => {
+    const confrim = window.confirm("Are you Sure??")
+    if (!confrim) return;
+    const res = await axios.delete(`http://localhost:3000/api/material/${id}`)
+    if (res.data.msg === "success") {
+      toast.success("Deleted Success")
+      getmaterial();
+    }
+    else {
+      toast.error('something went wrong')
+    }
+
+  }
+
+  
+
+  useEffect(() => {
+    getmaterial()
+  }, [])
 
 
   return (
     <>
+
       <div className="row">
-        <div className="col-md-12 p-4">
-          <h3>Material Inventory</h3>
-          <div className="card table-responsive p-3">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">S.no</th>
-                  <th scope="col">Material</th>
-                  <th scope="col">Available</th>
-                  <th scope="col">Used</th>
-                  <th scope="col">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Cement</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td colspan="2">Larry the Bird</td>
-                  <td>@fat</td>
-                  <td>@fat</td>
-                </tr>
-              </tbody>
-            </table>
-            {/* <!-- Button trigger modal --> */}
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              Update Material
-            </button>
-          </div>
+        <div className="col-md-8 mx-auto mt-4">
+          <form className="row g-3 p-4 text-white" onSubmit={addmaterial} style={{ backgroundColor: "#624430" }}>
+            <div className="col-md-6">
+              <label className="form-label">Material Name:</label>
+              <input type="text" className="form-control" value={materialName} onChange={(e) => setMaterialName(e.target.value)} />
+            </div>
+            <div className="col-md-6">
+              <label className="form-label">Material Price</label>
+              <input type="text" className="form-control" value={materialPrice} onChange={(e) => setMaterialPrice(e.target.value)} />
+            </div>
+            <div className="col-md-6">
+              <label className="form-label">Material Quantity</label>
+              <select name="" id="" className="form-control" value={materialQnty} onChange={(e) => setMaterialQnty(e.target.value)}>
+                <option value="">--Select Quantity</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="other">Other</option>
+              </select>
+
+              {materialQnty === "other" && (
+                <input
+                  type="number"
+                  className="form-control mt-2"
+                  placeholder="Enter custom quantity"
+                  value={customQty}
+                  onChange={(e) => setCustomQty(e.target.value)}
+                />
+              )}
+            </div>
+            <div className="col-md-6">
+              <label className="form-label">Material Image</label>
+              <input type="file" className="form-control" onChange={(e) => setMaterialImage(e.target.files[0])} />
+            </div>
+
+            <div className="col-12 text-center">
+              <button type="submit" className="btn btn-primary w-50">  {editId ? "Update Material" : "Add Materials"}</button>
+            </div>
+          </form>
         </div>
       </div>
 
-      {/* <!-- Modal --> */}
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form action="" onSubmit={materialcode}>
-                <div className="row">
-                  <div className="col-md-6">
-                    <label htmlFor="" className='label-control'>Cement Name:</label>
-                    <input type="text" className='form-control' value={cementName} onChange={(e) => setCementName(e.target.value)} />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="" className='label-control'>Cement Quantity:</label>
-                    <input type="Number" className='form-control' value={cementQty} onChange={(e) => setCementQty(e.target.value)} />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="" className='label-control'>Brick Name:</label>
-                    <input type="text" className='form-control' value={brickName} onChange={(e) => setBrickName(e.target.value)} />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="" className='label-control'>Brick Quantity:</label>
-                    <input type="Number" className='form-control' value={brickQty} onChange={(e) => setBrickQty(e.target.value)} />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="" className='label-control'>Steel Rode Name:</label>
-                    <input type="text" className='form-control' value={steelName} onChange={(e) => setSteeltName(e.target.value)} />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="" className='label-control'>Steel Rode Qantity:</label>
-                    <input type="Number" className='form-control' value={steelQty} onChange={(e) => setSteeltQty(e.target.value)} />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="" className='label-control'>Sand Name:</label>
-                    <input type="text" className='form-control' value={sandName} onChange={(e) => setSandtName(e.target.value)} />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="" className='label-control'>Sand Quantity:</label>
-                    <input type="Number" className='form-control' value={sandQty} onChange={(e) => setSandQty(e.target.value)} />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="" className='label-control'>Tiles Name:</label>
-                    <input type="text" className='form-control' value={tileName} onChange={(e) => settiletName(e.target.value)} />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="" className='label-control'>Tiles Quantity:</label>
-                    <input type="Number" className='form-control' value={tileQty} onChange={(e) => setTiletQty(e.target.value)} />
-                  </div>
+      <div className="row">
+        <div className="col-md-10 mx-auto table-responsive mt-5">
+          <table className='table table-bordered text-center'>
+            <thead className='table-dark'>
+              <tr>
+                <th>S.No</th>
+                <th>Image</th>
+                <th>Material Name</th>
+                <th>Material Price</th>
+                <th>Material Quantity</th>
+                <th>Toatal Price</th>
+                <th colSpan={2}>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                myMaterials.map((e, i) => (
+                  <tr key={i}>
+                    <td>{i + 1}</td>
+                    <td> <img
+                      src={`http://localhost:3000/upload/${e.materialImage}`}
+                      alt=""
+                      height={80}
+                      width={80}
+                      className="rounded-circle border border-3"
+                    /></td>
 
-                  <div className="col-md-6">
-                    <label htmlFor="" className='label-control'>Paint Bucket Name:</label>
-                    <input type="text" className='form-control' value={paintName} onChange={(e) => setPaintName(e.target.value)} />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="" className='label-control'>Paint Bucket Quantity:</label>
-                    <input type="Number" className='form-control' value={paintQty} onChange={(e) => setPaintQty(e.target.value)} />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="" className='label-control'>Wood Planks Name:</label>
-                    <input type="text" className='form-control' value={woodName} onChange={(e) => setWoodName(e.target.value)} />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="" className='label-control'>Wood Planks Quantity:</label>
-                    <input type="Number" className='form-control' value={woodQty} onChange={(e) => setWoodtQty(e.target.value)} />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="" className='label-control'>PVC Pipe Name:</label>
-                    <input type="text" className='form-control' value={pvcpipeName} onChange={(e) => setPvcpipeName(e.target.value)} />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="" className='label-control'>PVC Pipe Quantity:</label>
-                    <input type="Number" className='form-control' value={pvcpipeQty} onChange={(e) => setPvcpipeQty(e.target.value)} />
-                  </div>
+                    <td>{e.materialName}</td>
+                    <td>{e.materialPrice}</td>
+                    <td>{e.materialQnty}</td>
+                    <td>{e.materialPrice * e.materialQnty}</td>
+                    <td><button className='btn btn-outline-warning' onClick={() => editMaterial(e)}>Edit</button></td>
+                    <td><button className='btn btn-outline-danger' onClick={() => deleteMaterial(e._id)} >Delete</button></td>
+                  </tr>
+                ))
+              }
+            </tbody>
 
-                  <button className='btn btn-danger mt-4' type='submit'>Update</button>
-                </div>
+          </table>
 
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
+
         </div>
       </div>
+
+
 
     </>
   )

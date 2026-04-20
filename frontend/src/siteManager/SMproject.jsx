@@ -14,6 +14,7 @@ function SMproject() {
     const [qrimage,setQrimage]=useState('')
     const [takepayment,setTakepayment]=useState('')
     const [paylength,setpaylength]=useState('')
+    const [myReport, setMyReport] = useState([]);
 
     const getuserdata = async () => {
         const res = await axios.get('http://localhost:3000/api/user/project')
@@ -76,12 +77,31 @@ function SMproject() {
     }
 
 
-    const myReport = yourreport.filter((item) => {
-        console.log("Hello");
-        return (item.smuid._id == localStorage.getItem('siteManagerId') && item.projectId._id == proid)
+   
+   
+
+
+
+
+
+   
+async function handleRow(id) {
+    const filterdata = userdata.find((item) => item._id == id)
+    setSelecteddata(filterdata)
+    setProid(filterdata._id)
+
+    const filtered = yourreport.filter((item) => {
+        return (
+            item.smuid._id == localStorage.getItem('siteManagerId') &&
+            item.projectId._id == id
+        )
     })
-    //aproved report length
-    const filterapprovedreport = myReport.filter((i) => i.status === "Aproved");
+
+    setMyReport(filtered)
+}
+
+ //aproved report length
+    const filterapprovedreport = yourreport.filter((i) => i.status === "Aproved");
 
     console.log("filter report", filterapprovedreport)
 
@@ -90,14 +110,7 @@ function SMproject() {
 
 
 
-    async function handleRow(id) {
-        const filterdata = userdata.find((item) => item._id == id)
-        setSelecteddata(filterdata)
-        console.log(filterdata);
-        setProid(filterdata._id);
-        // console.log("My my filter report", filterdata)
 
-    }
 
     // Get final report from  homeOwner
     const acceptproject = async (u) => {
