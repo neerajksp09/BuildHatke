@@ -30,9 +30,15 @@ const user= { email, pass }
         if (res.data.user) {
           localStorage.setItem("userId", res.data.user._id);
         }
+        if (res.data.admin) {
+          localStorage.setItem("adminId", res.data.admin._id);
+        }
 
         if (res.data.role == "user") {
           navigate('/ulayout');
+        } 
+        else{
+          navigate('/adlayout');
         } 
 
       } else if (res.data.msg === "user not found") {
